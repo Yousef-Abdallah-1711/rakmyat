@@ -564,10 +564,11 @@ html[lang='en'] .type-eyebrow {
 .form-control {
   width: 100%;
   min-height: 48px;
+  scroll-margin-block-start: 9rem;
   border: 1.5px solid var(--color-border-interactive);
   border-radius: var(--radius-sm);
   padding: 12px;
-  background: var(--color-white-pure);
+  background: var(--color-surface-1);
   color: var(--color-ink-primary);
   outline: none;
   transition:
@@ -581,6 +582,17 @@ html[lang='en'] .type-eyebrow {
   box-shadow: var(--glow-inner);
 }
 
+.form-control:hover:not(:disabled):not(:focus-visible) {
+  border-color: var(--color-cobalt-signature);
+}
+
+.form-control:disabled {
+  background: var(--color-bg-section-tinted);
+  color: var(--color-ink-muted);
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
 .form-control[aria-invalid='true'] {
   border-color: var(--color-state-error);
 }
@@ -588,6 +600,12 @@ html[lang='en'] .type-eyebrow {
 textarea.form-control {
   min-height: 144px;
   resize: vertical;
+}
+
+@media (max-width: 1023px) {
+  .form-control {
+    scroll-margin-block-start: 8rem;
+  }
 }
 
 .form-hint {
@@ -618,10 +636,55 @@ textarea.form-control {
 }
 
 .checkbox-control {
+  display: grid;
   width: 20px;
   height: 20px;
   flex: 0 0 20px;
-  accent-color: var(--color-cobalt-signature);
+  appearance: none;
+  place-content: center;
+  border: 1.5px solid var(--color-border-interactive);
+  border-radius: 4px;
+  background: var(--color-surface-1);
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
+}
+
+.checkbox-control:hover:not(:disabled) {
+  border-color: var(--color-cobalt-signature);
+}
+
+.checkbox-control:focus-visible {
+  outline: 2px solid var(--color-state-focus);
+  outline-offset: 2px;
+}
+
+.checkbox-control::after {
+  width: 5px;
+  height: 9px;
+  transform: rotate(45deg) scale(0);
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  content: '';
+}
+
+.checkbox-control:checked {
+  border-color: var(--color-cobalt-signature);
+  background: var(--color-cobalt-signature);
+}
+
+.checkbox-control:checked::after {
+  transform: rotate(45deg) scale(1);
+}
+
+.checkbox-control[aria-invalid='true'] {
+  border-color: var(--color-state-error);
+}
+
+.checkbox-control:disabled {
+  background: var(--color-bg-section-tinted);
+  cursor: not-allowed;
+  opacity: 0.72;
 }
 
 .empty-state {
@@ -689,7 +752,7 @@ textarea.form-control {
   border: 1px solid var(--color-border-hairline);
   border-radius: var(--radius-sm);
   padding: var(--space-2) var(--space-3);
-  background: var(--color-white-pure);
+  background: var(--color-surface-1);
   box-shadow: var(--shadow-sm);
   color: var(--color-ink-secondary);
   font-size: var(--type-body-sm-size);

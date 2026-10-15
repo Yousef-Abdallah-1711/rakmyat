@@ -65,6 +65,41 @@
   padding-block: var(--space-6);
 }
 
+.reviewSection {
+  padding-block: var(--space-6);
+}
+
+.reviewIntro {
+  display: grid;
+  gap: var(--space-3);
+  margin-block-end: var(--space-5);
+}
+
+.reviewIntro h2,
+.reviewIntro p,
+.reviewSection h3 {
+  margin-block: 0 var(--space-3);
+}
+
+.reviewSection > div > section {
+  margin-block: var(--space-6);
+}
+
+.formFixtures {
+  display: grid;
+  max-width: 48rem;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border-hairline);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-1);
+  box-shadow: var(--shadow-sm);
+}
+
+.reviewServiceRow {
+  margin-block: var(--space-3);
+}
+
 .badges {
   display: flex;
   flex-wrap: wrap;

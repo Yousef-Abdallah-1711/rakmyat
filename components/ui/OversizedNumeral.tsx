@@ -17,8 +17,6 @@ export function OversizedNumeral({
       className={[styles.numeral, className].filter(Boolean).join(' ')}
       data-numeral={String(value).padStart(2, '0')}
       title={label}
-    >
-      {String(value).padStart(2, '0')}
-    </span>
+    />
   )
 }

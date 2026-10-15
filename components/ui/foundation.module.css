@@ -151,6 +151,15 @@
   transform: translateX(calc(var(--dir) * 8px));
 }
 
+.serviceRow:focus-visible .serviceContent {
+  transform: translateX(calc(var(--dir) * 8px));
+}
+
+.serviceRow:focus-visible {
+  outline: 2px solid var(--color-state-focus);
+  outline-offset: 4px;
+}
+
 .serviceContent {
   min-width: 0;
   transition: transform 200ms var(--ease-standard);
@@ -163,6 +172,10 @@
   font-weight: 500;
   line-height: 0.9;
   opacity: 0.08;
+}
+
+.numeral::before {
+  content: attr(data-numeral);
 }
 
 .serviceArrow {
@@ -206,7 +219,7 @@
   border: 1px solid transparent;
   border-radius: var(--radius-full);
   padding: 6px 10px;
-  background: var(--color-white-pure);
+  background: var(--color-surface-1);
   color: var(--color-ink-secondary);
   font-size: var(--text-en-technical-label);
   font-weight: 500;

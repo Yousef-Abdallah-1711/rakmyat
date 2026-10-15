@@ -257,7 +257,7 @@ GraphQL remains intentionally disabled. Re-enabling it requires resolving the du
 Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 component registry + token system; no full inner pages.
 
 #### P02-T001 — Implement the Cobalt & Porcelain token set as Tailwind `@theme` CSS
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T004
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T004
 - **Source:** DESIGN.md §5, §34
 - **Objective:** Populate `app/globals.css`'s `@theme` block with every token from DESIGN.md §34's CSS block (colors, spacing, radius, borders, shadows, glow, motion, z-index, breakpoints, grid, the `--dir` logical-direction helper).
 - **Inputs/Files:** `app/globals.css`.
@@ -265,10 +265,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** `--dir` custom property wired per §9.5. · **Responsive:** Breakpoint tokens included. · **Motion:** Timing/easing tokens included. · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** Snapshot test confirming every token name in DESIGN.md §34 exists as a usable Tailwind utility/CSS variable.
 - **Acceptance criteria:** Zero Navy/Cyan/Obsidian hex values present anywhere in the generated CSS (COBALT-PORCELAIN-VISUAL-ACCEPTANCE.md §7 Q1, checked here at the earliest possible point).
-- **DoD evidence:** Generated CSS diff; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Generated CSS diff; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T002 — Automated contrast re-verification of the token set
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T001
 - **Source:** DESIGN.md §5.4; COBALT-PORCELAIN-MIGRATION-REPORT.md §2.2, §9 (R4)
 - **Objective:** Run an automated contrast-checking tool against every pairing in DESIGN.md §5.4's table (including the 🟡-flagged `color.border.interactive` estimate) and record pass/fail with exact computed ratios, closing out Risk R4.
 - **Inputs/Files:** None created — tool output recorded in this task's completion evidence.
@@ -276,10 +276,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Verified for both locales' ink tokens identically (color is locale-independent). · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** Tool run itself is the test.
 - **Acceptance criteria:** Every pairing meets its stated WCAG target; `color.border.interactive` confirmed ≥3:1 or revised if it fails.
-- **DoD evidence:** Tool output with exact ratios; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Tool output with exact ratios; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T003 — English font loading (locale-scoped)
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T011
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T011
 - **Source:** DESIGN.md §6, §33; TECHNICAL-ARCHITECTURE.md §24
 - **Objective:** Self-host Space Grotesk, Inter, and IBM Plex Mono via `next/font`, subset+variable, loaded only inside `/en`'s layout branch.
 - **Inputs/Files:** `app/[locale]/(marketing)/layout.tsx` (or a locale-split font module).
@@ -287,10 +287,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** English-only load path — never bundled into `/ar`'s critical path. · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** ≤180KB combined per DESIGN.md §33, verified via build output.
 - **Tests:** Build-size check against the 180KB budget.
 - **Acceptance criteria:** Fonts load only on `/en/*`; budget met.
-- **DoD evidence:** Bundle-analyzer output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Bundle-analyzer output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T004 — Arabic font loading (locale-scoped)
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T011
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T011
 - **Source:** DESIGN.md §7, §33
 - **Objective:** Self-host IBM Plex Sans Arabic via `next/font`, subset+variable, loaded only inside `/ar`'s layout branch.
 - **Inputs/Files:** Locale-split font module (Arabic branch).
@@ -298,10 +298,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Arabic-only load path. · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** ≤120KB per DESIGN.md §33.
 - **Tests:** Build-size check against the 120KB budget.
 - **Acceptance criteria:** Font loads only on `/ar/*`; budget met; zero Latin-face fallback used for Arabic text (DESIGN.md §7).
-- **DoD evidence:** Bundle-analyzer output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Bundle-analyzer output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T005 — Build Primary Button component
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
 - **Source:** DESIGN.md §18.4, §24.3; CMS-SCHEMAS.md (consumes `cta` groups generically)
 - **Objective:** `components/ui/PrimaryButton.tsx` with `lg`/`md`/`sm` size variants and the full default/hover(deepen-to-`cobalt.deep`)/active/focus/disabled/loading state matrix.
 - **Inputs/Files:** `components/ui/PrimaryButton.tsx`, `PrimaryButton.module.css` (or Tailwind-only if sufficient).
@@ -309,10 +309,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Logical padding (`padding-inline-*`), both locale label examples tested. · **Responsive:** Touch target ≥44×44px below 1024px. · **Motion:** `motion.fast`/`ease.standard` hover, `motion.instant` active-scale. · **CMS:** Accepts `label`/`href` props generically — not CMS-aware itself. · **Security:** N/A · **Performance:** N/A
 - **Tests:** RTL component test for every state, both locale label examples (EN "Start a Project" / AR "ابدأ مشروعك").
 - **Acceptance criteria:** Matches COBALT-PORCELAIN-VISUAL-ACCEPTANCE.md §3's Primary Button row exactly (hover direction specifically).
-- **DoD evidence:** Component test output + a single-state screenshot; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Component test output + a single-state screenshot; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T006 — Build Secondary Button, Text Link, Icon Button
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
 - **Source:** DESIGN.md §18.5–§18.7
 - **Objective:** Three components sharing the same sizing/focus/disabled rules as T005, with their own fill/border/hover treatments (light cobalt-tint hover for Secondary, underline-on-hover for Text Link, 40×40px hit target for Icon Button).
 - **Inputs/Files:** `components/ui/SecondaryButton.tsx`, `TextLink.tsx`, `IconButton.tsx`.
@@ -320,10 +320,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Logical properties throughout. · **Responsive:** Touch targets per §18.7. · **Motion:** Per §24.3. · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** RTL component tests, both locales.
 - **Acceptance criteria:** Matches DESIGN.md §18.5–§18.7 exactly.
-- **DoD evidence:** Component test output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Component test output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T007 — Build Header / Desktop Navigation component
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T005, P02-T006, P02-T009
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T005, P02-T006, P02-T009
 - **Source:** DESIGN.md §18.1; PAGE-BLUEPRINTS.md §4
 - **Objective:** `components/ui/Header.tsx` — logo (inline-start), nav items, utility cluster (language switcher + primary CTA, inline-end), transparent-to-solid scroll-state transition with the new `color.border.hairline` bottom edge once solid.
 - **Inputs/Files:** `components/ui/Header.tsx`.
@@ -331,10 +331,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Full §11/§12 compliance — logo/CTA/switcher at logical start/end. · **Responsive:** Collapses to logo+hamburger below 400px width per §18.1. · **Motion:** `motion.fast` background/border transition. · **CMS:** Props-driven from `navigation` global (wired in Phase 04/05, not here — this task builds the component against mock props). · **Security:** N/A · **Performance:** Server-rendered shell, scroll-state logic hydrates progressively.
 - **Tests:** RTL component test for nav order in both directions.
 - **Acceptance criteria:** Matches PAGE-BLUEPRINTS.md §4 field-for-field.
-- **DoD evidence:** Component test output + EN/AR screenshot pair; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Component test output + EN/AR screenshot pair; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T008 — Build Mobile Navigation drawer component
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T007
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T007
 - **Source:** DESIGN.md §18.2
 - **Objective:** Full-height drawer, slides from inline-end edge, focus-trapped, closes via swipe-toward-start/✕/`Esc`, nav items at `type.en.h3`/`type.ar.h3` size, language switcher pinned above the primary CTA.
 - **Inputs/Files:** `components/ui/MobileDrawer.tsx`.
@@ -342,10 +342,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Enters from the correct physical edge per direction (right in LTR, left in RTL) via the logical-end convention. · **Responsive:** Mobile/tablet only. · **Motion:** Per §24.1–§24.2. · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** Keyboard-only navigation test (open, tab through items, `Esc` closes, focus returns to hamburger).
 - **Acceptance criteria:** Passes the keyboard-only test in both directions.
-- **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Test output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T009 — Build Language Switcher component
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P01-T011
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T001, P01-T011
 - **Source:** DESIGN.md §20
 - **Objective:** Two-way toggle ("العربية"/"English", real names not flags), preserves the equivalent route in the other locale, shows a fallback notice when no equivalent page exists yet.
 - **Inputs/Files:** `components/ui/LanguageSwitcher.tsx`.
@@ -353,10 +353,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Positioned inline-start of the primary CTA in both directions. · **Responsive:** Repeats at the top of the mobile drawer. · **Motion:** 200ms cross-fade on switch. · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** Unit test for the fallback-route logic (page exists → direct switch; page doesn't exist → closest valid equivalent + notice).
 - **Acceptance criteria:** Never silently stays on the same language or 404s on switch.
-- **DoD evidence:** Unit test output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Unit test output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T010 — Build Footer component
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T006
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T001, P02-T006
 - **Source:** DESIGN.md §18.18; PAGE-BLUEPRINTS.md §5
 - **Objective:** Four logical columns, `color.border.hairline` top edge, repeated language switcher, copyright line.
 - **Inputs/Files:** `components/ui/Footer.tsx`.
@@ -364,10 +364,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Column order verified both directions. · **Responsive:** Single-column stack on mobile. · **Motion:** None (quiet component). · **CMS:** Props-driven from `footer` global (wired Phase 05). · **Security:** N/A · **Performance:** Fully server-rendered.
 - **Tests:** RTL component test for column order.
 - **Acceptance criteria:** Matches PAGE-BLUEPRINTS.md §5 field-for-field.
-- **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Test output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T011 — Build Form Input/Textarea/Select, Checkbox, Validation Message
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T001
 - **Source:** DESIGN.md §18.12–§18.14
 - **Objective:** Label-above-field pattern (never placeholder-as-label), `color.border.interactive` border (not `hairline`), focus halo via `color.cobalt.glow.outer`, inline `aria-live="polite"` validation messages.
 - **Inputs/Files:** `components/ui/FormField.tsx`, `Checkbox.tsx`, `ValidationMessage.tsx`.
@@ -375,10 +375,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Verified both directions, incl. the LTR-forced numeric/email sub-case inside an RTL form. · **Responsive:** Full-width fields at every breakpoint. · **Motion:** Border/focus transition only. · **CMS:** N/A · **Security:** No client-only validation trusted (server reuse in Phase 08). · **Performance:** N/A
 - **Tests:** Accessibility test for `aria-live` announcement firing on a simulated error.
 - **Acceptance criteria:** Matches COBALT-PORCELAIN-VISUAL-ACCEPTANCE.md §3's Form fields row (interactive border, not hairline).
-- **DoD evidence:** a11y test output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** a11y test output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T012 — Wire Radix UI primitives for Accordion and Modal
-- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P02-T001
+- **Status:** DONE · **Priority:** P1 · **Depends on:** P02-T001
 - **Source:** DESIGN.md §18.11, §18.16; TECHNICAL-ARCHITECTURE.md §25
 - **Objective:** Install the unified `radix-ui` package; build Accordion (chevron rotate, `aria-expanded`, `max-height` transition, reduced-motion instant toggle) and Modal (focus-trapped, `Esc` closes, `color.overlay.scrim` backdrop) on top of Radix's accessible primitives rather than hand-rolling focus management.
 - **Inputs/Files:** `components/ui/Accordion.tsx`, `Modal.tsx`.
@@ -386,10 +386,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Chevron mirrors per §12.1. · **Responsive:** N/A · **Motion:** 300ms cap, reduced-motion instant. · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** Keyboard-trap test for Modal.
 - **Acceptance criteria:** Matches DESIGN.md §18.11/§18.16.
-- **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Test output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T013 — Build the oversized-numeral micro-detail device
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T003, P02-T004
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T003, P02-T004
 - **Source:** DESIGN.md §18.22
 - **Objective:** A reusable `components/ui/OversizedNumeral.tsx` rendering `01`/`02`/`03`… at 120–160px desktop, weight 500, `color.ink.muted` at 6–10% opacity, positioned behind/beside a row's text block.
 - **Inputs/Files:** `components/ui/OversizedNumeral.tsx`.
@@ -397,10 +397,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Numeral position follows logical start/end per the consuming component. · **Responsive:** Scales down at smaller breakpoints. · **Motion:** None. · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** Visual snapshot at the specified opacity.
 - **Acceptance criteria:** Matches DESIGN.md §18.22 exactly; opacity verified not to compete with foreground text (Gate 1/2).
-- **DoD evidence:** Snapshot; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Snapshot; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T014 — Build Service Row component
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004, P02-T013
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004, P02-T013
 - **Source:** DESIGN.md §18.8
 - **Objective:** Full-width editorial row on `color.bg.section.tinted`: oversized numeral (T013) + service name + description + inline-end chevron link, hover text-shift 8px toward inline-end.
 - **Inputs/Files:** `components/ui/ServiceRow.tsx`.
@@ -408,10 +408,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Hover-shift direction flips via the `--dir` logical transform. · **Responsive:** Numbered index stacks above name on mobile. · **Motion:** 200ms hover shift + entrance reveal. · **CMS:** Accepts `title`/`summary`/`pillarNumber`/`slug` props generically. · **Security:** N/A · **Performance:** N/A
 - **Tests:** RTL component test for hover-shift direction.
 - **Acceptance criteria:** Matches DESIGN.md §18.8; renders as a single accessible link per row (not nested interactive elements, per PAGE-BLUEPRINTS.md §6.3's accessibility row).
-- **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Test output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T015 — Build Project Showcase card component (incl. classification badge)
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
 - **Source:** DESIGN.md §18.9, §29; PRODUCT.md §23.1
 - **Objective:** Full-bleed/near-full-bleed 16:10 image card, classification badge (all four values' colors) pinned at the image's logical-start corner, hover scale 1→1.02 + shadow intensify.
 - **Inputs/Files:** `components/ui/ProjectShowcase.tsx`, `ClassificationBadge.tsx`.
@@ -419,10 +419,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Badge at logical-start corner. · **Responsive:** 16:10 maintained at every breakpoint via `next/image`. · **Motion:** 400ms hover scale, desktop only. · **CMS:** Accepts `projects` collection fields generically. · **Security:** N/A · **Performance:** Native lazy-loading except first visible card.
 - **Tests:** Visual test confirming all four badge colors render distinctly.
 - **Acceptance criteria:** Matches COBALT-PORCELAIN-VISUAL-ACCEPTANCE.md §3's badge row exactly.
-- **DoD evidence:** Four-badge screenshot; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Four-badge screenshot; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T016 — Build Loading, Empty, and 404 shell states
-- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P02-T005, P02-T006
+- **Status:** DONE · **Priority:** P1 · **Depends on:** P02-T005, P02-T006
 - **Source:** DESIGN.md §18.19–§18.21
 - **Objective:** Skeleton component (`color.surface.tinted` blocks, 1.5s opacity pulse), generic Empty-state component (icon-free, one sentence + link), and the 404 page shell (headline + two links, no 3D/particle asset).
 - **Inputs/Files:** `components/ui/Skeleton.tsx`, `EmptyState.tsx`, `app/[locale]/not-found.tsx`.
@@ -430,10 +430,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Verified both directions. · **Responsive:** N/A · **Motion:** 1.5s pulse only. · **CMS:** 404 explicitly has none. · **Security:** N/A · **Performance:** 404 is the fastest-loading route by design.
 - **Tests:** 404 renders correctly with the dev server's DB connection intentionally severed.
 - **Acceptance criteria:** 404 still renders correctly under a simulated DB outage.
-- **DoD evidence:** Test output under simulated outage; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Test output under simulated outage; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T017 — Implement RTL/LTR layout foundation
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T011
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T011
 - **Source:** DESIGN.md §9.5, §11–§12
 - **Objective:** Establish the project-wide logical-property convention (Tailwind's `ms-*`/`me-*`/`ps-*`/`pe-*`/`start-*`/`end-*` utilities) as the only allowed spacing/positioning approach in shared components — enforced via an ESLint rule or code-review checklist item, not just a convention nobody checks.
 - **Inputs/Files:** ESLint rule config (custom or community plugin) flagging physical `left`/`right`/`margin-left`/etc. in `components/`.
@@ -441,10 +441,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** This task *is* the enforcement mechanism. · **Responsive:** N/A · **Motion:** The `--dir` exception is scoped here. · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** Lint run against T005–T016's components finds zero physical-property violations.
 - **Acceptance criteria:** Lint rule active and passing against every component built so far in this phase.
-- **DoD evidence:** Lint output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Lint output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T018 — Implement GSAP motion foundation
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T001
 - **Source:** TECHNICAL-ARCHITECTURE.md §15; DESIGN.md §24
 - **Objective:** `lib/motion/tokens.ts` (duration/easing values matching DESIGN.md §24.1–§24.2 exactly) and the section-scoped `useGSAP()` + `ScrollTrigger` pattern (trigger scoped to the section's own container ref, never a document-spanning timeline).
 - **Inputs/Files:** `lib/motion/tokens.ts`, `components/motion/ScrollReveal.tsx` (a reusable section-reveal wrapper).
@@ -452,10 +452,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** N/A (motion tokens are direction-neutral; the `--dir`-based exception lives in T017). · **Responsive:** N/A · **Motion:** This task is the foundation itself. · **CMS:** N/A · **Security:** N/A · **Performance:** No scroll-hijacking (DESIGN.md §24.5), verified by this wrapper never overriding native scroll position.
 - **Tests:** Component test confirming `ScrollReveal` renders its final state immediately under `prefers-reduced-motion: reduce`.
 - **Acceptance criteria:** One working scroll-reveal demo on the scaffold page.
-- **DoD evidence:** Test output + a recorded interaction; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Test output + a recorded interaction; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T019 — Implement the analytics `track()` abstraction
-- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P01-T003
+- **Status:** DONE · **Priority:** P1 · **Depends on:** P01-T003
 - **Source:** TECHNICAL-ARCHITECTURE.md §23; PRODUCT.md §29
 - **Objective:** `lib/analytics/track.ts` exporting a `track(eventName, properties)` function that no-ops safely until a real vendor SDK is wired (PRODUCT.md §34's pending decision), with every event name from PRODUCT.md §29 pre-declared as a typed constant so call sites can't typo an unapproved name.
 - **Inputs/Files:** `lib/analytics/track.ts`, `lib/analytics/events.ts`.
@@ -463,10 +463,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** PII exclusion as above. · **Performance:** No-op path adds negligible overhead.
 - **Tests:** Unit test confirming `track()` doesn't throw with no vendor configured.
 - **Acceptance criteria:** Every PRODUCT.md §29 event name exists as a typed constant.
-- **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Test output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T020 — Re-verify `@react-three/drei` compatibility before relying on its helpers
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T001
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T001
 - **Source:** TECHNICAL-ARCHITECTURE.md §32 (Risk, R3 in PLAN.md §27)
 - **Objective:** Before Phase 03 builds the hero sculpture, confirm whether `@react-three/drei`'s camera/lighting/environment helpers are safe to use against the pinned React 19/R3F 9.5 pair, or whether the sculpture's camera/lighting rig must be hand-rolled against raw `@react-three/fiber`/`three` APIs instead.
 - **Inputs/Files:** None created — a short spike component in a scratch route, discarded or promoted depending on outcome.
@@ -474,10 +474,10 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** Spike component renders a trivial mesh with at least one Drei helper (e.g. `<Environment>`) without a runtime/type error.
 - **Acceptance criteria:** Explicit go/no-go recorded for Drei usage in P03.
-- **DoD evidence:** Spike output + decision note; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Spike output + decision note; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
 #### P02-T021 — Scaffold the prototype route and labeled local fixtures
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T007, P02-T008, P02-T009, P02-T010, P02-T014, P02-T015, P02-T016, P02-T017, P02-T018
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P02-T007, P02-T008, P02-T009, P02-T010, P02-T014, P02-T015, P02-T016, P02-T017, P02-T018
 - **Source:** PAGE-BLUEPRINTS.md §31.2; VISUAL-QUALITY-GATES.md §5
 - **Objective:** A dedicated prototype route composing Header, Footer, and placeholder slots for HOME-01/02/03/04, fed by explicitly-labeled local fixture data (e.g. `fixtures/prototype/*.ts`, filenames and content clearly marked "NOT REAL CONTENT — PROTOTYPE FIXTURE ONLY") — never anything that could be mistaken for live CMS content.
 - **Inputs/Files:** `app/[locale]/(prototype)/page.tsx` (or similar non-production route), `fixtures/prototype/*.ts`.
@@ -485,11 +485,15 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **RTL/LTR:** Renders both locales. · **Responsive:** All three required viewports render without crashing. · **Motion:** Scroll-reveal demo active. · **CMS:** Explicitly fixture-only, not CMS-driven. · **Security:** N/A · **Performance:** N/A
 - **Tests:** Playwright smoke test that the prototype route renders in both locales at all three viewports.
 - **Acceptance criteria:** Ready for P03's hero/particle work to be dropped into the HOME-01/HOME-04 slots.
-- **DoD evidence:** Smoke test output; Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Smoke test output; Reviewer: Codex technical-advisory evidence review (not a separate human Technical Lead); Project Owner approval: 2026-10-15.
 
-**Phase 02 exit:** all 21 tasks `DONE`; PLAN.md §20 Phase 02 exit criteria met; technical-lead sign-off recorded. **No full inner page was built in this phase** (verified against the task list above — every task is a component/foundation, not a page).
+**Phase 02 exit (2026-10-15):** all 21 tasks `DONE` based on the verified acceptance matrix and Project Owner approval with documented limitations. Codex technical-advisory evidence review is recorded; no separate external or human Technical Lead approval is claimed. No full inner page was built in this phase.
 
 **Implementation evidence (2026-10-15):** The 21 Phase 02 tasks have implementation and verification evidence in [PHASE-02-IMPLEMENTATION-REPORT.md](PHASE-02-IMPLEMENTATION-REPORT.md). All 21 remain **IN_REVIEW** because the exit criteria require Technical Lead sign-off; no independent external or human Technical Lead approval is recorded. P02-T003/T004 use licensed, self-hosted WOFF2 subsets and locale-conditional React resource hints instead of the task-prescribed next/font route modules. This avoids cross-locale preload links emitted from the shared dynamic locale layout; EN/AR resource and budget checks pass. The implementation decision is documented for Technical Lead review. Owner visual approval and Phase 03 approval are not asserted.
+
+**Corrective revalidation evidence (2026-10-15):** See the preserved original [PHASE-02-ACCEPTANCE-AUDIT.md](PHASE-02-ACCEPTANCE-AUDIT.md), [PHASE-02-CORRECTIVE-ACCEPTANCE-REPORT.md](PHASE-02-CORRECTIVE-ACCEPTANCE-REPORT.md), and the corrective addendum in [PHASE-02-IMPLEMENTATION-REPORT.md](PHASE-02-IMPLEMENTATION-REPORT.md). The four undefined `--color-white-pure` references were replaced with the approved `--color-surface-1`; automated CSS token-reference coverage was added. The drawer is opaque, reduced-motion aware, and Axe-clean in its open state in EN/AR at tablet/mobile/narrow-mobile. Form controls and checkbox states, live errors, hints, and LTR email/numeric controls are verified in both locales. Production browser screenshots cover Accordion collapsed/expanded, OversizedNumeral beside actual ServiceRow content, form controls, drawer, and responsive EN/AR prototype renders. The final regression passed: 27 unit tests; 95 E2E passed and five documented viewport-specific skips; lint, formatting, typecheck, peer check, frozen installation, production build, Payload auth/persistence, and PostgreSQL connectivity. Font payloads and locale isolation pass, with the `next/font` implementation deviation and Arabic tablet CLS of 0.0547 disclosed. The Drei result is limited to the tested PerspectiveCamera helper; the test-renderer Three CJS deprecation is not an app/runtime warning. These statements record evidence before the Owner decision below.
+
+**Formal Phase 02 closure (2026-10-15):** The Project Owner reviewed the Phase 02 corrective acceptance results and desktop/tablet/mobile screenshots and **approved Phase 02 closure**, accepting the documented technical limitations and visual follow-up items. All 21 verified Phase 02 acceptance criteria are marked **DONE**. Codex provided technical-advisory evidence review; no separate external or human Technical Lead approval is claimed. A final sticky-header check found that at 320px Arabic the email-field label could scroll behind the 72px header. Logical scroll margins now keep the complete label and input below the sticky header; production captures and a Playwright regression passed in EN/AR at 1440, 768, 390, and 320px. Accepted follow-ups are: the documented `next/font` deviation and delayed Arabic CLS measurement; scoped Drei compatibility with no browser Canvas/WebGL/environment/lighting validation; and no visual approval claim for the full ProjectShowcase media, loading/empty, or 404 presentation beyond their task-level criteria. See [PHASE-02-IMPLEMENTATION-REPORT.md](PHASE-02-IMPLEMENTATION-REPORT.md) §11 and [PHASE-03-ENTRY-CHECKLIST.md](PHASE-03-ENTRY-CHECKLIST.md). Phase 03 has not started, and the Homepage visual design is not approved.
 
 ---
 

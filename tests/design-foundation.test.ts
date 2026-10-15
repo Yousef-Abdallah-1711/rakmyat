@@ -1,8 +1,18 @@
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 
 const read = (path: string) => readFileSync(join(process.cwd(), path), 'utf8')
+
+function cssFiles(directory: string): string[] {
+  return readdirSync(join(process.cwd(), directory), {
+    withFileTypes: true,
+  }).flatMap((entry) => {
+    const path = join(directory, entry.name)
+    if (entry.isDirectory()) return cssFiles(path)
+    return entry.isFile() && entry.name.endsWith('.css') ? [path] : []
+  })
+}
 
 function luminance(hex: string) {
   const channels = hex
@@ -44,6 +54,26 @@ describe('Cobalt Blue & Porcelain design foundation', () => {
     }
     expect(css).toContain('#2453ff')
     expect(css).toContain('#f7f8fc')
+  })
+
+  it('uses only declared semantic color tokens in shared application CSS', () => {
+    const globalCss = read('app/globals.css')
+    const declarations = new Set(
+      [...globalCss.matchAll(/(--color-[\w-]+)\s*:/g)].map((match) => match[1]),
+    )
+    const references = new Set(
+      cssFiles('app')
+        .concat(cssFiles('components'))
+        .flatMap((path) =>
+          [...read(path).matchAll(/var\((--color-[\w-]+)/g)].map(
+            (match) => match[1],
+          ),
+        ),
+    )
+
+    expect([...references].sort()).toEqual(
+      [...references].filter((token) => declarations.has(token)).sort(),
+    )
   })
 
   it('meets text and interactive-boundary contrast targets on light surfaces', () => {

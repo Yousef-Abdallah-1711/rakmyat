@@ -2,13 +2,17 @@ import { hasLocale } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { ClassificationBadge } from '@/components/ui/ClassificationBadge'
+import { Accordion } from '@/components/ui/Accordion'
+import { Checkbox } from '@/components/ui/Checkbox'
 import { Container } from '@/components/ui/Container'
 import { Footer } from '@/components/ui/Footer'
+import { FormField } from '@/components/ui/FormField'
 import { Header } from '@/components/ui/Header'
 import { Modal } from '@/components/ui/Modal'
 import { ScrollReveal } from '@/components/motion/ScrollReveal'
 import { SecondaryButton } from '@/components/ui/SecondaryButton'
 import { Section } from '@/components/ui/Section'
+import { ServiceRow } from '@/components/ui/ServiceRow'
 import { routing } from '@/i18n/routing'
 import styles from './PrototypePage.module.css'
 
@@ -134,6 +138,104 @@ export default async function Phase02PrototypePage({
               <h2>{t('motionTitle')}</h2>
               <p>{t('motionDescription')}</p>
             </ScrollReveal>
+          </Container>
+        </Section>
+
+        <Section className={styles.reviewSection} surface="tinted">
+          <Container>
+            <div className={styles.reviewIntro}>
+              <p className={styles.fixtureNotice}>{t('notReal')}</p>
+              <h2 className="type-h2">{t('reviewTitle')}</h2>
+              <p className="type-body">{t('reviewDescription')}</p>
+            </div>
+
+            <section
+              aria-labelledby="accordion-review-title"
+              data-testid="review-accordion"
+            >
+              <h3 className="type-h3" id="accordion-review-title">
+                {t('accordionTitle')}
+              </h3>
+              <Accordion
+                items={[
+                  {
+                    id: 'responsive-review',
+                    title: t('accordionQuestion'),
+                    content: <p>{t('accordionAnswer')}</p>,
+                  },
+                ]}
+                label={t('accordionTitle')}
+              />
+            </section>
+
+            <section
+              aria-labelledby="service-review-title"
+              data-testid="review-service"
+            >
+              <h3 className="type-h3" id="service-review-title">
+                {t('serviceTitle')}
+              </h3>
+              <ServiceRow
+                href="/phase-02"
+                pillarNumber={1}
+                summary={t('serviceSummary')}
+                title={t('serviceName')}
+                className={styles.reviewServiceRow}
+                data-testid="review-service-row"
+              />
+            </section>
+
+            <section aria-labelledby="form-review-title">
+              <h3 className="type-h3" id="form-review-title">
+                {t('fieldsTitle')}
+              </h3>
+              <div
+                className={styles.formFixtures}
+                data-testid="prototype-form-fixtures"
+              >
+                <FormField
+                  hint={t('fieldHint')}
+                  label={t('fieldName')}
+                  name="fixture-name"
+                />
+                <FormField
+                  error={t('fieldError')}
+                  hint={t('fieldHint')}
+                  label={t('fieldEmail')}
+                  name="fixture-email"
+                  type="email"
+                />
+                <FormField
+                  label={t('fieldNumber')}
+                  name="fixture-number"
+                  type="number"
+                />
+                <FormField
+                  disabled
+                  label={t('fieldDisabled')}
+                  name="fixture-disabled"
+                />
+                <FormField
+                  label={t('fieldSelect')}
+                  name="fixture-type"
+                  selectOptions={[
+                    { label: t('fieldSelectOption'), value: 'software' },
+                  ]}
+                  selectPlaceholder={t('fieldSelectPlaceholder')}
+                />
+                <FormField
+                  label={t('fieldMessage')}
+                  multiline
+                  name="fixture-message"
+                />
+                <Checkbox label={t('fieldConsent')} name="fixture-consent" />
+                <Checkbox
+                  disabled
+                  label={t('fieldDisabledConsent')}
+                  name="fixture-disabled-consent"
+                />
+              </div>
+            </section>
           </Container>
         </Section>
       </main>

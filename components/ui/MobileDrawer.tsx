@@ -42,10 +42,14 @@ export function MobileDrawer({
     <Dialog.Root onOpenChange={setOpen} open={open}>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className={styles.overlay} />
+        <Dialog.Overlay
+          className={styles.overlay}
+          data-testid="mobile-drawer-overlay"
+        />
         <Dialog.Content
           aria-label={menuLabel}
           className={styles.content}
+          data-testid="mobile-drawer-content"
           onPointerDown={(event) => {
             pointerStart.current = event.clientX
           }}

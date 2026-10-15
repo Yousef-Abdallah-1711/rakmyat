@@ -8,6 +8,7 @@ type ServiceRowProps = {
   pillarNumber: number
   href: string
   className?: string
+  'data-testid'?: string
 }
 
 function Arrow() {
@@ -35,11 +36,13 @@ export function ServiceRow({
   pillarNumber,
   href,
   className,
+  'data-testid': testId,
 }: ServiceRowProps) {
   return (
     <Link
       aria-label={`${title}. ${summary}`}
       className={[styles.serviceRow, className].filter(Boolean).join(' ')}
+      data-testid={testId}
       href={href as '/'}
     >
       <OversizedNumeral label={title} value={pillarNumber} />

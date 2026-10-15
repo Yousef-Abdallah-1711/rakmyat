@@ -12,6 +12,7 @@ type FieldProps = {
   error?: string
   hint?: string
   required?: boolean
+  disabled?: boolean
   type?: InputHTMLAttributes<HTMLInputElement>['type']
   multiline?: boolean
   selectOptions?: Option[]
@@ -34,6 +35,7 @@ export function FormField({
   error,
   hint,
   required = false,
+  disabled = false,
   type = 'text',
   multiline = false,
   selectOptions,
@@ -60,6 +62,7 @@ export function FormField({
     className: 'form-control',
     defaultValue,
     dir: direction,
+    disabled,
     id,
     name,
     onChange: onChange as never,

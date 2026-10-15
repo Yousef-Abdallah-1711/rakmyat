@@ -97,6 +97,23 @@ describe('Phase 02 UI foundation', () => {
     ).toBe('polite')
   })
 
+  it('supports disabled controls and keeps numeric values LTR', () => {
+    withIntl(
+      <>
+        <FormField disabled label="Name" name="name" />
+        <FormField label="Quantity" name="quantity" type="number" />
+      </>,
+    )
+
+    expect(
+      (screen.getByRole('textbox', { name: 'Name' }) as HTMLInputElement)
+        .disabled,
+    ).toBe(true)
+    expect(
+      screen.getByRole('spinbutton', { name: 'Quantity' }).getAttribute('dir'),
+    ).toBe('ltr')
+  })
+
   it('renders email, textarea, select, and checkbox controls with semantic labels', () => {
     withIntl(
       <>
@@ -130,7 +147,9 @@ describe('Phase 02 UI foundation', () => {
     expect(
       screen.getByRole('link', { name: /Software\. Summary/ }),
     ).toBeTruthy()
-    expect(screen.getByText('01').getAttribute('aria-hidden')).toBe('true')
+    expect(screen.getByTitle('Software').getAttribute('aria-hidden')).toBe(
+      'true',
+    )
   })
 
   it('renders the project showcase media and its classification overlay', () => {
@@ -231,7 +250,9 @@ describe('Phase 02 UI foundation', () => {
       </>,
     )
 
-    expect(screen.getByText('01').getAttribute('aria-hidden')).toBe('true')
+    expect(screen.getByTitle('Step one').getAttribute('aria-hidden')).toBe(
+      'true',
+    )
     fireEvent.click(screen.getByRole('button', { name: 'Open details' }))
     expect(screen.getByRole('dialog')).toBeTruthy()
     fireEvent.click(screen.getByRole('button', { name: 'Close dialog' }))
