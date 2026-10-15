@@ -1,7 +1,7 @@
 # RAKMYAT — TASKS.md
 ### Executable Task Register (Phases 01–10)
 
-**Execution status (2026-10-15):** Phase 01 foundation and the owner-approved CMS administrator authentication exception have been implemented and technically re-reviewed. P01-T009's former first-user blocker is resolved. Phase 01 tasks remain `IN_REVIEW` pending technical-lead approval; no technical-lead approval is claimed.
+**Execution status (2026-10-15):** Phase 01 foundation and the owner-approved CMS administrator authentication exception have been implemented, reviewed, validated, and committed as `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f` on `main`. P01-T006's example env file and P01-T017's frozen lockfile are included in that commit. P01-T009's former first-user blocker is resolved. All Phase 01 tasks remain `IN_REVIEW` pending Technical Lead approval; no such approval is claimed.
 **Governing plan:** [PLAN.md](./PLAN.md) — read §20 for phase goals/exit criteria before executing any task below; this file is the decomposition of that plan, not an independent source of truth.
 **Task ID convention:** `P{phase}-T{number}`, stable and unique, zero-padded to 3 digits.
 **Status values:** `TODO` · `IN_PROGRESS` · `BLOCKED` · `IN_REVIEW` · `DONE` — no other value is valid.
@@ -80,7 +80,7 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** This is itself the primary security control for this task. · **Performance:** N/A
 - **Tests:** N/A (convention/config task).
 - **Acceptance criteria:** `.env.local` is git-ignored; `.env.example` contains only placeholder keys.
-- **DoD evidence:** `git check-ignore -v .env.local` confirms the local env file is ignored; `.env.example` contains placeholder values only. The task evidence template asks for an untracked file, which conflicts with the ignored-file acceptance criterion. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** `git check-ignore -v .env.local` confirms the real local env file is ignored; `.env.example` contains nine placeholder-only entries and no real values. The safe template is committed in `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f`. Reviewer: Technical Lead; Approval: Pending.
 
 #### P01-T007 — Author the Docker Compose development stack
 - **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T003
@@ -113,7 +113,7 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** Proves the integration boots; no real schema. · **Security:** Default Payload auth active even on the empty admin. · **Performance:** N/A
 - **Tests:** Production Webpack build; Playwright admin first-user creation and login; unauthenticated user creation denial; database-backed user lookup; login again after PostgreSQL container restart.
 - **Acceptance criteria:** Build succeeds (closing out T002's decision for real); admin UI renders without errors; first admin user can be created and log in; hashed auth data survives a PostgreSQL restart; public user registration is denied after the initial setup; only the auth-only Users collection is configured.
-- **DoD evidence (2026-10-15):** Production Webpack build succeeds with Payload 3.90.2 and the single auth-only `Users` collection. The Admin UI first-user flow created a temporary integration account; authenticated login succeeded before and after a Docker Compose PostgreSQL restart, proving the record/password persisted. An unauthenticated `POST /api/users` was denied. The temporary account was deleted after verification. No Phase 04 business collections, globals, custom content fields, roles, or editorial features were added. Owner approval for this narrow exception is recorded above. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** Production Webpack build succeeds with Payload 3.90.2 and the single auth-only `Users` collection. The Admin UI first-user form created a temporary integration account; login and authenticated user lookup succeeded before and after a Docker Compose PostgreSQL restart, proving persistence. Unauthenticated `GET /api/users` and `POST /api/users` were denied. The temporary account was deleted. No Phase 04 business collections, globals, custom content fields, roles, or editorial features were added. Owner approval for this narrow exception is recorded above. Reviewer: Technical Lead; Approval: Pending.
 
 #### P01-T010 — Implement root locale-negotiation routing shell
 - **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T003
@@ -124,7 +124,7 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** The negotiated locale determines the subsequent `<html dir/lang>` in T011. · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** Negotiation adds no more than one redirect hop.
 - **Tests:** Unit test for the negotiation function (no cookie + Arabic `Accept-Language` → `/ar`; no cookie + other → `/en`; cookie present → honors it regardless of header).
 - **Acceptance criteria:** Matches PRODUCT.md §14's owner-approved policy: valid cookie, then supported language preference, then English; no geo lookup; never defaults to Arabic globally.
-- **DoD evidence (2026-10-15):** Owner approved the no-geo cookie → `Accept-Language` → English policy in this session. Unit tests cover cookie precedence, quality ordering, unsupported/missing languages, and English fallback. Playwright verifies Arabic header redirect/cookie, saved-cookie precedence, and `q` preference at all three viewport projects (21/21 E2E tests passed). Cookie lifetime is one year. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** Owner approved the no-geo cookie → `Accept-Language` → English policy in this session. Unit tests cover cookie precedence, quality ordering, unsupported/missing languages, out-of-range quality rejection, and English fallback. Playwright verifies Arabic header redirect/cookie, saved-cookie precedence, and `q` preference at all three viewport projects (21/21 E2E tests passed). Cookie lifetime is one year. Reviewer: Technical Lead; Approval: Pending.
 
 #### P01-T011 — Configure `next-intl` base routing (`/en`, `/ar`)
 - **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T003, P01-T010
@@ -201,7 +201,7 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** CI (once it exists) installs from the committed lockfile without drift.
 - **Acceptance criteria:** Lockfile committed; Node version decision recorded with its date-based rationale.
-- **DoD evidence (2026-10-15):** `corepack pnpm install --frozen-lockfile` passes with stable pnpm 12.11.2, and `pnpm-lock.yaml` records the exact pnpm and dependency graph. `.nvmrc` pins Node 24.22.0 LTS; this workstation has Node 24.16.0, and the Docker image uses Node 24 Alpine. The release-age gate remains enabled with exact-version exemptions for recently published locked packages. Lockfile commit evidence will follow the reviewed Phase 01 commit. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** `corepack pnpm install --frozen-lockfile` passes with stable pnpm 12.11.2, and `pnpm-lock.yaml` records the exact pnpm and dependency graph. `.nvmrc` pins Node 24.22.0 LTS; this workstation has Node 24.16.0, and the Docker image uses Node 24 Alpine. The release-age gate remains enabled with exact-version exemptions for recently published locked packages. `pnpm-lock.yaml` is committed in `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f`. Reviewer: Technical Lead; Approval: Pending.
 
 **Phase 01 exit:** all 17 tasks `DONE`; PLAN.md §20 Phase 01 exit criteria met; technical-lead sign-off recorded.
 
@@ -209,9 +209,9 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 
 Owner decisions recorded in this session: (1) a minimal Payload Users authentication collection is approved only for administrator authentication and first-user setup; (2) root locale selection is valid locale cookie → quality-ordered supported `Accept-Language` → English, with no geo detection. These do not constitute technical-lead approval.
 
-All 17 tasks were rechecked against their original acceptance criteria. Implementation evidence is green for T001–T005, T007–T016, and the functional criteria of T006/T017. T009's acceptance criteria were exercised end-to-end: empty-admin first-user form, first-user creation, login, authenticated user lookup, unauthenticated read/create denial, PostgreSQL restart persistence, and temporary-account cleanup. The final `docker compose --env-file .env.local up --build -d` completed; the app ran as `node`, PostgreSQL reported healthy and was reachable from the app, and PostgreSQL port 5432 remained unpublished. Final checks: `corepack pnpm test` (2 files, 6 tests), `corepack pnpm auth:check`, `corepack pnpm e2e` (21/21, including six axe scans), `corepack pnpm lint`, `corepack pnpm format:check`, `corepack pnpm typecheck`, `corepack pnpm peers check`, and `corepack pnpm build` all passed. The auth integration test removed its temporary user.
+All 17 tasks were rechecked against their original acceptance criteria. Technical acceptance criteria pass, including P01-T006 and P01-T017 after the reviewed commit. T009 was exercised end-to-end: empty-admin first-user form, account creation, login, authenticated lookup, unauthenticated read/create denial, PostgreSQL restart persistence, and temporary-account cleanup. The Phase 01 files, including `.env.example` and `pnpm-lock.yaml`, are committed on `main` as `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f`. The final Compose build passed; the app ran as `node`, PostgreSQL was healthy and reachable, and port 5432 was unpublished. Final checks passed: `corepack pnpm install --frozen-lockfile` (pnpm 12.11.2), `corepack pnpm test` (2 files, 7 tests), `corepack pnpm auth:check`, `corepack pnpm e2e` (21/21, including six axe scans), lint, format, typecheck, peer check, and production build. The auth integration test removed its temporary user.
 
-**Open exit blockers:** Technical Lead review/approval remains pending. The project files are untracked in Git; `.env.example` and `pnpm-lock.yaml` therefore are not committed, so the committed-template expectation in T006 and explicit “Lockfile committed” acceptance criterion in T017 are not satisfied. These tasks and all other Phase 01 tasks remain `IN_REVIEW`; none is marked `DONE`. Phase 02 has not started. See [PHASE-01-CLOSURE-REPORT.md](./PHASE-01-CLOSURE-REPORT.md) for the full 17-task acceptance review and GO/NO-GO decision.
+**Open exit blocker:** Technical Lead review/approval remains pending. Every Phase 01 task remains `IN_REVIEW`; none is marked `DONE`. No Phase 02 work has started. Unreviewed later-phase design/schema/audit files remain unstaged and uncommitted. See [PHASE-01-CLOSURE-REPORT.md](./PHASE-01-CLOSURE-REPORT.md) for the 17-task PASS/BLOCKED checklist and Phase 02 recommendation.
 
 ---
 

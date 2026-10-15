@@ -69,7 +69,7 @@ All versions below were verified via live package-registry/vendor-documentation 
 | Package | Purpose | Proposed version | Latest verified (2026-10-14) | Compatibility constraints | Node compat | License | Decision status |
 |---|---|---|---|---|---|---|---|
 | `next` | Framework | `^16.2.6` (Payload-compatible floor) | 16.4.0 | Payload CMS requires ≥16.2.0; Payload+Next16 Turbopack conflict noted (§32) — may require pinning to a specific 16.2.x/16.3.x patch once resolved | Node ≥18.18 (Next 16 likely raises floor — verify) | MIT | VERIFY-AT-IMPLEMENTATION |
-| `react` / `react-dom` | UI runtime | `^19.2.0` | 19.3.0 (Sep 2026) | R3F 9.5 confirmed for React 19.0–19.2; do not jump to 19.3 until R3F's support range is reconfirmed | — | MIT | VERIFY-AT-IMPLEMENTATION |
+| `react` / `react-dom` | UI runtime | `^19.3.1` | 19.3.1 (registry recheck 2026-10-15) | React 19.3.1 is within Next 16 and R3F 9.8.2 peer ranges | ? | MIT | LOCKED |
 | `typescript` | Language | latest 5.x stable | not re-queried this cycle | Strict mode mandated regardless of patch version | — | Apache-2.0 | UNVERIFIED |
 | `payload` (core) | CMS | `^3.73.0` minimum (Next 16 floor) | `@payloadcms/db-postgres` observed at 3.90.2 — core payload package itself should be pinned to the **same** version number as `@payloadcms/db-postgres`/`@payloadcms/next`/`@payloadcms/richtext-lexical` per Payload's monorepo versioning convention | Requires Next.js ≥16.2.0 for full Next 16 support (PR #14456) | Node per Next.js floor | MIT | VERIFY-AT-IMPLEMENTATION |
 | `@payloadcms/next` | Payload↔Next glue | same version as `payload` core | — | Injects a `webpack()` config hook — conflicts with Turbopack-as-default in Next 16 (§32) | — | MIT | VERIFY-AT-IMPLEMENTATION |
@@ -79,9 +79,9 @@ All versions below were verified via live package-registry/vendor-documentation 
 | `next-intl` | i18n | `^4.14.9` | 4.14.9 | App-Router-first, Server Component APIs (`getTranslations`, `getFormatter`), no routing hacks needed | — | MIT | LOCKED |
 | `gsap` | Animation | `^3.15.0` | 3.15.0 | 100% free incl. all plugins (ScrollTrigger, SplitText) under GreenSock standard "no charge" license | — | Custom (GreenSock Standard — free for commercial use) | LOCKED |
 | `@gsap/react` | React/GSAP glue (`useGSAP`) | `^2.1.2` | 2.1.2 — registry snapshot showed this as "last published 2 years ago," which is stale for an actively maintained ecosystem; re-check for a newer release at implementation | — | Same as `gsap` | VERIFY-AT-IMPLEMENTATION |
-| `three` | 3D engine | satisfy `@react-three/fiber@9.5.0`'s peer range | not independently queried — pin to whatever `three` version R3F 9.5's `package.json` peerDependencies specifies at install time | Must match R3F's declared peer range exactly | — | MIT | UNVERIFIED |
-| `@react-three/fiber` | React 3D renderer | `^9.5.0` | 9.5.0 | Confirmed React 19.0–19.2 support; one search signal claimed 19.3 compatibility — treat as unconfirmed until cross-checked against the package's own README at install time | — | MIT | VERIFY-AT-IMPLEMENTATION |
-| `@react-three/drei` | R3F helpers | latest matching R3F 9.x | not independently version-pinned this cycle | Must track R3F major version; GitHub discussion #2213 ("Is React 19 & R3F v9 Supported?") indicates this pairing is still an active compatibility conversation in the ecosystem — verify before pinning | — | MIT | VERIFY-AT-IMPLEMENTATION |
+| `three` | 3D engine | `^0.186.1` | 0.186.1 (registry recheck 2026-10-15) | R3F 9.8.2 declares Three >=0.156 | ? | MIT | LOCKED |
+| `@react-three/fiber` | React 3D renderer | `^9.8.2` | 9.8.2 (registry recheck 2026-10-15) | Peer range: React/React DOM >=19 <19.4; Three >=0.156 | ? | MIT | LOCKED |
+| `@react-three/drei` | R3F helpers | `^10.7.9` | 10.7.9 (registry recheck 2026-10-15) | Peer range: React/React DOM ^19; R3F ^9; Three >=0.159 | ? | MIT | LOCKED |
 | `embla-carousel-react` | Carousel | `^8.6.0` | 8.6.0 stable (9.0.0 only exists as `-rc`) | Use stable v8, not the v9 release candidate | — | MIT | LOCKED |
 | `radix-ui` (unified package) | Accessible primitives | `^1.8.1` | 1.8.1 | Prefer the unified `radix-ui` package over per-primitive `@radix-ui/react-*` installs to avoid node_modules bloat (per the ecosystem's own stated direction) | — | MIT | LOCKED |
 | `lucide-react` | Utility icons (non-branded only — custom icon set per DESIGN.md §17 covers everything else) | `^1.56.0` | 1.56.0 | v1.0 removed brand/logo icons from the package — irrelevant to Rakmyat since no third-party brand icons are used anyway | — | ISC | LOCKED |
@@ -113,7 +113,7 @@ All versions below were verified via live package-registry/vendor-documentation 
 | Payload requires Next.js ≥16.2.0 for full Next 16 support, merged in `payload@3.73.0` | PR #14456 | github.com/payloadcms/payload/pull/14456 |
 | Payload's `@payloadcms/next` injects a `webpack()` hook that can conflict with Turbopack, Next 16's default bundler | Community compatibility writeup | buildwithmatija.com/blog/payload-cms-nextjs-16-compatibility-breakthrough |
 | GSAP (incl. ScrollTrigger, SplitText) is 100% free for commercial use | GreenSock standard license page | gsap.com/standard-license |
-| `@react-three/fiber@9.x` pairs with `react@19`; confirmed range React 19.0–19.2 | R3F release notes / ecosystem writeups | github.com/pmndrs/react-three-fiber/releases; hysenlabs.com review |
+| `@react-three/fiber@9.8.2` pairs with React 19.3.1 | npm registry peer metadata queried 2026-10-15 | registry.npmjs.org/@react-three/fiber |
 | `@react-three/drei` + React 19/R3F v9 compatibility is an active, not fully settled, community topic | GitHub Discussion #2213 | github.com/pmndrs/drei/discussions/2213 |
 | Zod 4 requires `@hookform/resolvers ≥5.1.0`; 5.x auto-detects Zod 3 vs. 4 | resolvers PR #777; Zod issue #4992 | github.com/react-hook-form/resolvers/pull/777 |
 | Tailwind CSS v4 uses CSS-first `@theme` config, no `tailwind.config.js`; Next.js 15.1+ has built-in PostCSS support | Tailwind v4 release coverage | fireup.pro; sitepoint.com |
@@ -427,11 +427,11 @@ Deploy: build a new image tag, run database migrations (Payload's schema push, s
 
 | Risk | Detail | Status |
 |---|---|---|
-| Payload `@payloadcms/next`'s `webpack()` hook vs. Next.js 16's Turbopack default | Documented community compatibility issue (§5); may require forcing webpack mode for the dev/build pipeline (`next dev --webpack` style) until Payload ships a Turbopack-native integration, or pinning to a Next.js 16.2.x patch confirmed compatible | **BLOCKED — re-verify at implementation kickoff against the exact Payload/Next versions available that day** |
-| `@react-three/drei` + React 19/R3F v9 pairing | Still an active community compatibility discussion, not a fully closed question as of this verification date | VERIFY-AT-IMPLEMENTATION |
-| React 19.3 vs. R3F's confirmed 19.0–19.2 support window | Conflicting search signals found (§4) | VERIFY-AT-IMPLEMENTATION — pin React to 19.2.x unless R3F's own docs confirm 19.3 support by implementation time |
-| `@gsap/react` registry staleness signal | Snapshot showed "last published 2 years ago," unusual for an active ecosystem — may indicate the search tool returned cached/incomplete registry data rather than an actually-stale package | VERIFY-AT-IMPLEMENTATION |
-| Node 24 vs. Node 26 LTS timing | Node 26 becomes Active LTS 2026-10-28, which may fall before or after the actual implementation start date depending on scheduling | VERIFY-AT-IMPLEMENTATION |
+| Payload `@payloadcms/next`'s `webpack()` hook vs. Next.js 16's Turbopack default | The installed integration is built and run using the documented Webpack flag | RESOLVED IN P01-T002/T009; recheck if either major changes |
+| `@react-three/drei` + React 19/R3F v9 pairing | Registry peer metadata for Drei 10.7.9, Fiber 9.8.2, React 19.3.1, and Three 0.186.1 is compatible | RESOLVED FOR CURRENT VERSIONS; repeat when installing in a later phase |
+| React 19.3 vs. R3F support | Fiber 9.8.2 declares React/React DOM >=19 <19.4 | RESOLVED FOR CURRENT VERSIONS; repeat when installing in a later phase |
+| `@gsap/react` registry staleness signal | Registry metadata confirms `@gsap/react` 2.1.2 and GSAP 3.15.0, with peers React >=17 and GSAP ^3.12.5 | RESOLVED 2026-10-15 |
+| Node 24 vs. Node 26 LTS timing | Official release page shows Node 24.22.0 as LTS and Node 26.12.0 as Current on 2026-10-15 | RESOLVED FOR PHASE 01; recheck when later phases or production deployment begin |
 
 None of these risks block the *documentation* phase; all are logged so the implementation phase does not silently discover them mid-build.
 
