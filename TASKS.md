@@ -257,7 +257,7 @@ GraphQL remains intentionally disabled. Re-enabling it requires resolving the du
 Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 component registry + token system; no full inner pages.
 
 #### P02-T001 — Implement the Cobalt & Porcelain token set as Tailwind `@theme` CSS
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P01-T004
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T004
 - **Source:** DESIGN.md §5, §34
 - **Objective:** Populate `app/globals.css`'s `@theme` block with every token from DESIGN.md §34's CSS block (colors, spacing, radius, borders, shadows, glow, motion, z-index, breakpoints, grid, the `--dir` logical-direction helper).
 - **Inputs/Files:** `app/globals.css`.
@@ -268,7 +268,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Generated CSS diff; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T002 — Automated contrast re-verification of the token set
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T001
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001
 - **Source:** DESIGN.md §5.4; COBALT-PORCELAIN-MIGRATION-REPORT.md §2.2, §9 (R4)
 - **Objective:** Run an automated contrast-checking tool against every pairing in DESIGN.md §5.4's table (including the 🟡-flagged `color.border.interactive` estimate) and record pass/fail with exact computed ratios, closing out Risk R4.
 - **Inputs/Files:** None created — tool output recorded in this task's completion evidence.
@@ -279,7 +279,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Tool output with exact ratios; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T003 — English font loading (locale-scoped)
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P01-T011
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T011
 - **Source:** DESIGN.md §6, §33; TECHNICAL-ARCHITECTURE.md §24
 - **Objective:** Self-host Space Grotesk, Inter, and IBM Plex Mono via `next/font`, subset+variable, loaded only inside `/en`'s layout branch.
 - **Inputs/Files:** `app/[locale]/(marketing)/layout.tsx` (or a locale-split font module).
@@ -290,7 +290,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Bundle-analyzer output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T004 — Arabic font loading (locale-scoped)
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P01-T011
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T011
 - **Source:** DESIGN.md §7, §33
 - **Objective:** Self-host IBM Plex Sans Arabic via `next/font`, subset+variable, loaded only inside `/ar`'s layout branch.
 - **Inputs/Files:** Locale-split font module (Arabic branch).
@@ -301,7 +301,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Bundle-analyzer output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T005 — Build Primary Button component
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
 - **Source:** DESIGN.md §18.4, §24.3; CMS-SCHEMAS.md (consumes `cta` groups generically)
 - **Objective:** `components/ui/PrimaryButton.tsx` with `lg`/`md`/`sm` size variants and the full default/hover(deepen-to-`cobalt.deep`)/active/focus/disabled/loading state matrix.
 - **Inputs/Files:** `components/ui/PrimaryButton.tsx`, `PrimaryButton.module.css` (or Tailwind-only if sufficient).
@@ -312,7 +312,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Component test output + a single-state screenshot; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T006 — Build Secondary Button, Text Link, Icon Button
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
 - **Source:** DESIGN.md §18.5–§18.7
 - **Objective:** Three components sharing the same sizing/focus/disabled rules as T005, with their own fill/border/hover treatments (light cobalt-tint hover for Secondary, underline-on-hover for Text Link, 40×40px hit target for Icon Button).
 - **Inputs/Files:** `components/ui/SecondaryButton.tsx`, `TextLink.tsx`, `IconButton.tsx`.
@@ -323,7 +323,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Component test output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T007 — Build Header / Desktop Navigation component
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T005, P02-T006, P02-T009
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T005, P02-T006, P02-T009
 - **Source:** DESIGN.md §18.1; PAGE-BLUEPRINTS.md §4
 - **Objective:** `components/ui/Header.tsx` — logo (inline-start), nav items, utility cluster (language switcher + primary CTA, inline-end), transparent-to-solid scroll-state transition with the new `color.border.hairline` bottom edge once solid.
 - **Inputs/Files:** `components/ui/Header.tsx`.
@@ -334,7 +334,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Component test output + EN/AR screenshot pair; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T008 — Build Mobile Navigation drawer component
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T007
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T007
 - **Source:** DESIGN.md §18.2
 - **Objective:** Full-height drawer, slides from inline-end edge, focus-trapped, closes via swipe-toward-start/✕/`Esc`, nav items at `type.en.h3`/`type.ar.h3` size, language switcher pinned above the primary CTA.
 - **Inputs/Files:** `components/ui/MobileDrawer.tsx`.
@@ -345,7 +345,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T009 — Build Language Switcher component
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T001, P01-T011
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P01-T011
 - **Source:** DESIGN.md §20
 - **Objective:** Two-way toggle ("العربية"/"English", real names not flags), preserves the equivalent route in the other locale, shows a fallback notice when no equivalent page exists yet.
 - **Inputs/Files:** `components/ui/LanguageSwitcher.tsx`.
@@ -356,7 +356,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Unit test output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T010 — Build Footer component
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T001, P02-T006
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T006
 - **Source:** DESIGN.md §18.18; PAGE-BLUEPRINTS.md §5
 - **Objective:** Four logical columns, `color.border.hairline` top edge, repeated language switcher, copyright line.
 - **Inputs/Files:** `components/ui/Footer.tsx`.
@@ -367,7 +367,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T011 — Build Form Input/Textarea/Select, Checkbox, Validation Message
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T001
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001
 - **Source:** DESIGN.md §18.12–§18.14
 - **Objective:** Label-above-field pattern (never placeholder-as-label), `color.border.interactive` border (not `hairline`), focus halo via `color.cobalt.glow.outer`, inline `aria-live="polite"` validation messages.
 - **Inputs/Files:** `components/ui/FormField.tsx`, `Checkbox.tsx`, `ValidationMessage.tsx`.
@@ -378,7 +378,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** a11y test output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T012 — Wire Radix UI primitives for Accordion and Modal
-- **Status:** TODO · **Priority:** P1 · **Depends on:** P02-T001
+- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P02-T001
 - **Source:** DESIGN.md §18.11, §18.16; TECHNICAL-ARCHITECTURE.md §25
 - **Objective:** Install the unified `radix-ui` package; build Accordion (chevron rotate, `aria-expanded`, `max-height` transition, reduced-motion instant toggle) and Modal (focus-trapped, `Esc` closes, `color.overlay.scrim` backdrop) on top of Radix's accessible primitives rather than hand-rolling focus management.
 - **Inputs/Files:** `components/ui/Accordion.tsx`, `Modal.tsx`.
@@ -389,7 +389,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T013 — Build the oversized-numeral micro-detail device
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T003, P02-T004
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T003, P02-T004
 - **Source:** DESIGN.md §18.22
 - **Objective:** A reusable `components/ui/OversizedNumeral.tsx` rendering `01`/`02`/`03`… at 120–160px desktop, weight 500, `color.ink.muted` at 6–10% opacity, positioned behind/beside a row's text block.
 - **Inputs/Files:** `components/ui/OversizedNumeral.tsx`.
@@ -400,7 +400,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Snapshot; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T014 — Build Service Row component
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004, P02-T013
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004, P02-T013
 - **Source:** DESIGN.md §18.8
 - **Objective:** Full-width editorial row on `color.bg.section.tinted`: oversized numeral (T013) + service name + description + inline-end chevron link, hover text-shift 8px toward inline-end.
 - **Inputs/Files:** `components/ui/ServiceRow.tsx`.
@@ -411,7 +411,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T015 — Build Project Showcase card component (incl. classification badge)
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001, P02-T003, P02-T004
 - **Source:** DESIGN.md §18.9, §29; PRODUCT.md §23.1
 - **Objective:** Full-bleed/near-full-bleed 16:10 image card, classification badge (all four values' colors) pinned at the image's logical-start corner, hover scale 1→1.02 + shadow intensify.
 - **Inputs/Files:** `components/ui/ProjectShowcase.tsx`, `ClassificationBadge.tsx`.
@@ -422,7 +422,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Four-badge screenshot; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T016 — Build Loading, Empty, and 404 shell states
-- **Status:** TODO · **Priority:** P1 · **Depends on:** P02-T005, P02-T006
+- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P02-T005, P02-T006
 - **Source:** DESIGN.md §18.19–§18.21
 - **Objective:** Skeleton component (`color.surface.tinted` blocks, 1.5s opacity pulse), generic Empty-state component (icon-free, one sentence + link), and the 404 page shell (headline + two links, no 3D/particle asset).
 - **Inputs/Files:** `components/ui/Skeleton.tsx`, `EmptyState.tsx`, `app/[locale]/not-found.tsx`.
@@ -433,7 +433,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Test output under simulated outage; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T017 — Implement RTL/LTR layout foundation
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P01-T011
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T011
 - **Source:** DESIGN.md §9.5, §11–§12
 - **Objective:** Establish the project-wide logical-property convention (Tailwind's `ms-*`/`me-*`/`ps-*`/`pe-*`/`start-*`/`end-*` utilities) as the only allowed spacing/positioning approach in shared components — enforced via an ESLint rule or code-review checklist item, not just a convention nobody checks.
 - **Inputs/Files:** ESLint rule config (custom or community plugin) flagging physical `left`/`right`/`margin-left`/etc. in `components/`.
@@ -444,7 +444,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Lint output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T018 — Implement GSAP motion foundation
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T001
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T001
 - **Source:** TECHNICAL-ARCHITECTURE.md §15; DESIGN.md §24
 - **Objective:** `lib/motion/tokens.ts` (duration/easing values matching DESIGN.md §24.1–§24.2 exactly) and the section-scoped `useGSAP()` + `ScrollTrigger` pattern (trigger scoped to the section's own container ref, never a document-spanning timeline).
 - **Inputs/Files:** `lib/motion/tokens.ts`, `components/motion/ScrollReveal.tsx` (a reusable section-reveal wrapper).
@@ -455,7 +455,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Test output + a recorded interaction; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T019 — Implement the analytics `track()` abstraction
-- **Status:** TODO · **Priority:** P1 · **Depends on:** P01-T003
+- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P01-T003
 - **Source:** TECHNICAL-ARCHITECTURE.md §23; PRODUCT.md §29
 - **Objective:** `lib/analytics/track.ts` exporting a `track(eventName, properties)` function that no-ops safely until a real vendor SDK is wired (PRODUCT.md §34's pending decision), with every event name from PRODUCT.md §29 pre-declared as a typed constant so call sites can't typo an unapproved name.
 - **Inputs/Files:** `lib/analytics/track.ts`, `lib/analytics/events.ts`.
@@ -466,7 +466,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Test output; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T020 — Re-verify `@react-three/drei` compatibility before relying on its helpers
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P01-T001
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T001
 - **Source:** TECHNICAL-ARCHITECTURE.md §32 (Risk, R3 in PLAN.md §27)
 - **Objective:** Before Phase 03 builds the hero sculpture, confirm whether `@react-three/drei`'s camera/lighting/environment helpers are safe to use against the pinned React 19/R3F 9.5 pair, or whether the sculpture's camera/lighting rig must be hand-rolled against raw `@react-three/fiber`/`three` APIs instead.
 - **Inputs/Files:** None created — a short spike component in a scratch route, discarded or promoted depending on outcome.
@@ -477,7 +477,7 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Spike output + decision note; Reviewer: Technical Lead; Approval: Pending.
 
 #### P02-T021 — Scaffold the prototype route and labeled local fixtures
-- **Status:** TODO · **Priority:** P0 · **Depends on:** P02-T007, P02-T008, P02-T009, P02-T010, P02-T014, P02-T015, P02-T016, P02-T017, P02-T018
+- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P02-T007, P02-T008, P02-T009, P02-T010, P02-T014, P02-T015, P02-T016, P02-T017, P02-T018
 - **Source:** PAGE-BLUEPRINTS.md §31.2; VISUAL-QUALITY-GATES.md §5
 - **Objective:** A dedicated prototype route composing Header, Footer, and placeholder slots for HOME-01/02/03/04, fed by explicitly-labeled local fixture data (e.g. `fixtures/prototype/*.ts`, filenames and content clearly marked "NOT REAL CONTENT — PROTOTYPE FIXTURE ONLY") — never anything that could be mistaken for live CMS content.
 - **Inputs/Files:** `app/[locale]/(prototype)/page.tsx` (or similar non-production route), `fixtures/prototype/*.ts`.
@@ -488,6 +488,8 @@ Goal/exit criteria: PLAN.md §20 Phase 02. Builds the full DESIGN.md §18 compon
 - **DoD evidence:** Smoke test output; Reviewer: Technical Lead; Approval: Pending.
 
 **Phase 02 exit:** all 21 tasks `DONE`; PLAN.md §20 Phase 02 exit criteria met; technical-lead sign-off recorded. **No full inner page was built in this phase** (verified against the task list above — every task is a component/foundation, not a page).
+
+**Implementation evidence (2026-10-15):** The 21 Phase 02 tasks have implementation and verification evidence in [PHASE-02-IMPLEMENTATION-REPORT.md](PHASE-02-IMPLEMENTATION-REPORT.md). All 21 remain **IN_REVIEW** because the exit criteria require Technical Lead sign-off; no independent external or human Technical Lead approval is recorded. P02-T003/T004 use licensed, self-hosted WOFF2 subsets and locale-conditional React resource hints instead of the task-prescribed next/font route modules. This avoids cross-locale preload links emitted from the shared dynamic locale layout; EN/AR resource and budget checks pass. The implementation decision is documented for Technical Lead review. Owner visual approval and Phase 03 approval are not asserted.
 
 ---
 

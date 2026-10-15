@@ -1,0 +1,118 @@
+.header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-index-nav);
+  height: 88px;
+  border-block-end: 1px solid transparent;
+  background: transparent;
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard),
+    backdrop-filter var(--motion-fast) var(--ease-standard);
+}
+
+.header[data-scrolled='true'] {
+  border-color: var(--color-border-hairline);
+  background: rgb(255 255 255 / 92%);
+  backdrop-filter: blur(12px);
+}
+
+.inner {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.logo {
+  flex: 0 0 auto;
+  color: var(--color-ink-primary);
+  font-family: var(--font-active-display), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.desktopNav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: clamp(12px, 1.8vw, 28px);
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: var(--color-ink-secondary);
+  font-size: var(--type-nav-size);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.navLink::after {
+  position: absolute;
+  inset-block-end: 7px;
+  inset-inline: 0;
+  height: 2px;
+  background: var(--color-cobalt-signature);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--motion-fast) var(--ease-standard);
+}
+
+.navLink:hover,
+.navLink[data-active='true'] {
+  color: var(--color-ink-primary);
+}
+
+.navLink:hover::after,
+.navLink[data-active='true']::after {
+  transform: scaleX(1);
+}
+
+.utility {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.mobileControls {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+@media (max-width: 1023px) {
+  .header {
+    height: 72px;
+  }
+
+  .desktopNav,
+  .utility {
+    display: none;
+  }
+
+  .mobileControls {
+    display: flex;
+  }
+}
+
+@media (max-width: 399px) {
+  .mobileControls :global(.language-switcher) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .navLink::after {
+    transition: none;
+  }
+}

@@ -5,6 +5,7 @@ const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:3101'
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
+  workers: 4,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
     baseURL,
@@ -28,6 +29,10 @@ export default defineConfig({
     {
       name: 'mobile',
       use: { ...devices['iPhone 13'], viewport: { width: 390, height: 844 } },
+    },
+    {
+      name: 'narrow-mobile',
+      use: { ...devices['iPhone 13'], viewport: { width: 320, height: 740 } },
     },
   ],
   webServer: {

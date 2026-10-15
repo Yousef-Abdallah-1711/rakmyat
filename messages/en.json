@@ -1,6 +1,76 @@
 {
   "Foundation": {
     "title": "Application foundation",
-    "description": "This minimal page confirms the English route and application setup. It is not the finished Rakmyat homepage."
+    "description": "This minimal page confirms the English route and application setup. It is not the finished Rakmyat homepage.",
+    "motionTitle": "Motion foundation check",
+    "motionDescription": "The content is visible before any animation runs. This reveal is an implementation check, not homepage content."
+  },
+  "Prototype": {
+    "title": "Phase 02 component foundation",
+    "description": "Internal implementation surface. Every sample below is a UI fixture, not published Rakmyat content.",
+    "notReal": "NOT REAL CONTENT — COMPONENT FIXTURES ONLY",
+    "reserved": "Reserved for Phase 03 visual prototype",
+    "motionTitle": "Section reveal test",
+    "motionDescription": "A small, section-scoped motion check with a complete static state.",
+    "badgeTitle": "Classification badge fixtures",
+    "badgeHelp": "These labels demonstrate the four approved project classifications. No project is represented.",
+    "classifications": {
+      "client": "Real Client Project",
+      "internal": "Internal Product",
+      "concept": "Concept / Demo",
+      "confidential": "Confidential Summary"
+    },
+    "dialog": {
+      "open": "Open dialog preview",
+      "title": "Accessible dialog preview",
+      "description": "A localized modal interaction check for the component foundation.",
+      "first": "First dialog action",
+      "last": "Last dialog action",
+      "close": "Close dialog"
+    }
+  },
+  "Header": {
+    "logo": "Rakmyat home",
+    "navigation": "Primary navigation",
+    "menu": "Open navigation menu",
+    "close": "Close navigation menu",
+    "languageGroup": "Choose language",
+    "english": "English",
+    "arabic": "العربية",
+    "fallbackNotice": "This page is not available in the selected language yet. You are now on the home page.",
+    "primaryCta": "Start a Project",
+    "links": {
+      "work": "Work",
+      "services": "Services",
+      "process": "Process",
+      "about": "About",
+      "contact": "Contact"
+    }
+  },
+  "Footer": {
+    "brandName": "Rakmyat",
+    "mission": "Custom software, enterprise systems, and AI-driven automation.",
+    "navigation": "Navigation",
+    "services": "Services",
+    "contact": "Contact and legal",
+    "copyright": "© 2026 Rakmyat. All rights reserved.",
+    "privacy": "Privacy",
+    "serviceLinks": {
+      "software": "Custom Software Engineering",
+      "enterprise": "Enterprise Technology Solutions",
+      "automation": "AI Agents & Automation"
+    }
+  },
+  "NotFound": {
+    "title": "This page is not here.",
+    "description": "The address may have changed. Continue from the home page or contact Rakmyat.",
+    "home": "Go to home",
+    "contact": "Contact Rakmyat"
+  },
+  "LanguageSwitch": {
+    "group": "Choose language",
+    "english": "English",
+    "arabic": "العربية",
+    "fallbackNotice": "This page is not available in the selected language yet. You are now on the home page."
   }
 }

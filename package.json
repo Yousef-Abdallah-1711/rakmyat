@@ -11,7 +11,7 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint .",
+    "lint": "eslint . && node scripts/check-logical-css.mjs",
     "format": "prettier --write --ignore-unknown --ignore-path .prettierignore .",
     "format:check": "prettier --check --ignore-unknown --ignore-path .prettierignore .",
     "typecheck": "tsc --noEmit",
@@ -25,21 +25,28 @@
     "docker:down": "docker compose --env-file .env.local down"
   },
   "dependencies": {
+    "@gsap/react": "2.1.2",
     "@payloadcms/db-postgres": "3.90.2",
     "@payloadcms/next": "3.90.2",
     "@payloadcms/richtext-lexical": "3.90.2",
+    "@react-three/drei": "10.7.9",
+    "@react-three/fiber": "9.8.1",
     "@sentry/nextjs": "11.7.0",
+    "gsap": "3.15.0",
     "next": "16.4.1",
     "next-intl": "4.14.9",
     "payload": "3.90.2",
     "pg": "8.16.3",
+    "radix-ui": "1.8.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "server-only": "0.0.1"
+    "server-only": "0.0.1",
+    "three": "0.186.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.13.0",
     "@playwright/test": "1.64.1",
+    "@react-three/test-renderer": "9.1.1",
     "@tailwindcss/postcss": "4.3.3",
     "@testing-library/dom": "10.4.2",
     "@testing-library/react": "16.3.3",

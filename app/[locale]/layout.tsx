@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import ReactDOM from 'react-dom'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
@@ -29,6 +30,18 @@ export default async function LocaleLayout({
   const messages = await getMessages()
   const htmlLocale = locale === 'ar' ? 'ar-EG' : 'en'
   const direction = locale === 'ar' ? 'rtl' : 'ltr'
+  if (locale === 'en') {
+    ReactDOM.preload('/fonts/space-grotesk-latin.woff2', {
+      as: 'font',
+      crossOrigin: 'anonymous',
+      type: 'font/woff2',
+    })
+    ReactDOM.preload('/fonts/inter-latin.woff2', {
+      as: 'font',
+      crossOrigin: 'anonymous',
+      type: 'font/woff2',
+    })
+  }
 
   return (
     <html lang={htmlLocale} dir={direction}>
