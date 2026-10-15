@@ -132,6 +132,6 @@ No task is marked `DONE`. `PASS` below means the stated technical acceptance cri
 
 ### Git state and remaining gates
 
-The audit started from `main` at `6d8bd7617e9d1cf74627af5c8033f57b14d6ccd3`, synchronized with `origin/main`. `pnpm-lock.yaml` and `.env.example` are tracked in the earlier Phase 01 implementation commit. Later-phase/design files and the independent audit remain untracked and are preserved. The corrective commit SHA and post-commit status are recorded below after reviewed staging and commit; no push is authorized or performed.
+The audit started from `main` at `6d8bd7617e9d1cf74627af5c8033f57b14d6ccd3`, synchronized with `origin/main`. `pnpm-lock.yaml` and `.env.example` are tracked in the earlier Phase 01 implementation commit. The reviewed corrective implementation commit is `6fa5f753af6a05736deebb7d0f82644e4e0204dd` on local `main`; the documentation-only commit recording this SHA follows it in history. The later-phase/design files and the independent audit remain untracked and are preserved. No push was performed.
 
 All technical criteria in the matrix have passing current evidence, but formal closure remains **NO-GO** until a Technical Lead has reviewed the evidence and the project owner records acceptance. No task is marked `DONE`; no owner or Technical Lead approval is asserted. Phase 02 has not started. Future-phase design/schema documents remain unreviewed scope materials and are not Phase 01 defects.
