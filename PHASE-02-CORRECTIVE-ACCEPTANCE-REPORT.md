@@ -11,7 +11,7 @@ The corrective pass addressed the implementation defects and evidence gaps recor
 
 Revalidation passed: frozen lockfile install; 27 unit tests; 95 browser tests with five documented viewport-specific skips; lint/logical CSS; formatting; typecheck; peer check; production build; Payload authentication and persistence; and PostgreSQL connectivity. No serious or critical Axe findings were reported, including scans while the drawer was open.
 
-**Recommendation: CONDITIONAL GO for final Phase 02 owner/technical review.** Implementation corrections are evidenced. Two disclosures remain for reviewer disposition: the task-prescribed `next/font` mechanism was replaced with locale-conditional local WOFF2/CSS preloads (the actual locale and payload-budget criteria pass), and delayed Arabic font loading previously measured tablet CLS at 0.0547. Drei evidence is limited to the tested `PerspectiveCamera` helper under the test renderer; it does not approve browser WebGL, `Environment`, lighting, or a Phase 03 scene. All 21 task workflow statuses remain `IN_REVIEW`; no owner acceptance or Phase 03 visual approval is claimed. No Phase 03 work was started.
+**Recommendation at time of corrective review: CONDITIONAL GO for final Phase 02 owner/technical review.** Implementation corrections are evidenced. Two disclosures remained for reviewer disposition: the task-prescribed `next/font` mechanism was replaced with locale-conditional local WOFF2/CSS preloads (the actual locale and payload-budget criteria pass), and delayed Arabic font loading previously measured tablet CLS at 0.0547. Drei evidence is limited to the tested `PerspectiveCamera` helper under the test renderer; it does not approve browser WebGL, `Environment`, lighting, or a Phase 03 scene. At that review point, all 21 task workflow statuses remained `IN_REVIEW`; owner acceptance and Phase 03 visual approval were not yet claimed. No Phase 03 work was started.
 
 ## 2. Review basis and corrective actions
 
@@ -111,7 +111,7 @@ The five skips are the documented conditional cases in `e2e/phase-02.spec.ts`: t
 
 ## 9. Git and file safety
 
-No commit or push was performed. Original `PHASE-02-ACCEPTANCE-AUDIT.md` and the untracked owner audit `PHASE-01-OWNER-ACCEPTANCE-AUDIT.md` were preserved. Corrective screenshot artifacts were added under `screenshots/phase-02/corrective/`; they show only fixture-labeled content. E2E-produced modifications to the six baseline tracked screenshots were restored after testing. No local environment file or database state was staged. Final secret/unintended-change review and exact worktree status are recorded in the completion summary.
+At the time of the original corrective review, no commit or push had been performed. Original `PHASE-02-ACCEPTANCE-AUDIT.md` and the untracked owner audit `PHASE-01-OWNER-ACCEPTANCE-AUDIT.md` were preserved. Corrective screenshot artifacts were added under `screenshots/phase-02/corrective/`; they show only fixture-labeled content. E2E-produced modifications to the six baseline tracked screenshots were restored after testing. No local environment file or database state was staged. Final secret/unintended-change review and exact worktree status are recorded in the completion summary.
 
 ## 10. Required reviewer actions and recommendation
 
@@ -120,4 +120,13 @@ No commit or push was performed. Original `PHASE-02-ACCEPTANCE-AUDIT.md` and the
 3. Keep Drei usage scoped to the tested `PerspectiveCamera` helper. A future browser Canvas/WebGL smoke must test the actual camera/lighting/Environment set before relying on it.
 4. Record required human Technical Lead review and separate Project Owner acceptance through the normal project process. No approval is supplied by this report.
 
-**CONDITIONAL GO for final Phase 02 owner/technical review.** Corrective implementation findings are resolved and acceptance evidence is prepared. This is not formal Phase 02 closure. All 21 tasks remain `IN_REVIEW`; no task is marked `DONE`. No owner approval, separate human Technical Lead approval, Phase 03 work, or Phase 03 visual approval is claimed. Stop here for owner acceptance.
+**Historical status before owner closure: CONDITIONAL GO for final Phase 02 owner/technical review.** At that point, corrective findings were resolved and evidence was prepared, but Phase 02 was not yet formally closed and all 21 tasks remained `IN_REVIEW`. The Project Owner closure decision is recorded in the addendum below.
+
+
+## 11. Project Owner closure addendum (2026-10-15)
+
+This addendum supersedes the workflow recommendation above for current status; it preserves the original corrective findings and review record. The Project Owner stated that they reviewed the corrective acceptance report and screenshots and formally approved Phase 02 closure, accepting the documented font-loading, Arabic CLS, and scoped Drei compatibility limitations. All 21 Phase 02 tasks are recorded DONE in TASKS.md against their individual criteria and evidence. Codex supplied technical-advisory review; no separate human Technical Lead approval is claimed. The independent PHASE-02-ACCEPTANCE-AUDIT.md remains unchanged.
+
+The sticky-header/form issue was corrected with logical scroll margins. The regression checks the label and input positions below the header for EN and AR at desktop (1440), tablet (768), mobile (390), and narrow mobile (320). Closure rerun on 2026-10-15 passed: frozen install; 27 unit tests; 95 Playwright passes and five expected skips; Axe with zero serious/critical findings; lint/logical CSS; formatting; typecheck; peer checks; production build; Payload authentication and PostgreSQL restart persistence; Docker Compose `db:check` and config. The known Three test-renderer CommonJS deprecation remains documented. The final build emitted no warning.
+
+Phase 03 has not started. The Homepage visual design is not approved. See sections 11 and 12 of the implementation report and PHASE-03-ENTRY-CHECKLIST.md for accepted follow-ups and the handoff.

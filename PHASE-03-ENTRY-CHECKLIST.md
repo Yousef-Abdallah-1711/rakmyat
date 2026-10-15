@@ -12,11 +12,12 @@ Use clearly labeled local fixture content; do not claim it is live CMS content o
 
 ## Entry checks before starting implementation
 
-- [ ] Phase 02 closure is recorded in TASKS.md; all P02 tasks are `DONE` with the dated Project Owner decision and technical-advisory evidence. Do not infer separate human Technical Lead approval.
+- [x] Phase 02 closure is recorded in TASKS.md; all P02 tasks are `DONE` with the dated Project Owner decision and technical-advisory evidence. No separate human Technical Lead approval is inferred.
 - [ ] Read the governing source sections: PLAN.md §§19, 20 Phase 03, 24; TASKS.md P03-T001–P03-T018; PAGE-BLUEPRINTS.md §§6.1–6.4 and 31.2; DESIGN.md §§13–14, 24, 27; VISUAL-QUALITY-GATES.md §§1–5; COBALT-PORCELAIN-VISUAL-ACCEPTANCE.md §§1–8; VISUAL-ASSET-MATRIX.md §§2–3.
 - [ ] Provision the staging environment at Phase 03 start as required by PLAN.md §24; verify the review deployment shape and access before visual review.
 - [ ] Recheck the accepted Phase 02 follow-ups before use: English/Arabic font loading and payloads, Arabic delayed-font CLS mitigation or explicit follow-up measurement, and Drei/browser Canvas compatibility for the exact camera/lighting/Environment helpers intended for the sculpture. The prior `PerspectiveCamera` test-renderer spike does not establish browser WebGL compatibility.
 - [ ] Define the asset/provenance plan before introducing any prototype artwork. Trace every used asset to VISUAL-ASSET-MATRIX.md; no stock imagery or fabricated client imagery.
+- [ ] Obtain the final Rakmyat logo/wordmark before final brand polish or favicon work; DESIGN.md §18.3 permits the interim typographic lockup meanwhile. Build the required signature sculpture procedurally and use only assets with documented provenance; do not use stock or fabricated client imagery.
 - [ ] Confirm fixture-only labeling and remove any component-gallery framing. The user-facing artifact must read as one homepage, not a library demo page.
 
 ## Scope lock: six homepage elements

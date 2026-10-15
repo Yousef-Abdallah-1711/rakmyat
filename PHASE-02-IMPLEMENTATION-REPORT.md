@@ -14,13 +14,13 @@ All 21 Phase 02 acceptance areas have implementation evidence. The original inde
 
 At initial implementation review, the Phase 02 task register was **IN_REVIEW** pending the independent audit and owner decision. Following the corrective revalidation and the Project Owner's approval dated October 15, 2026, all 21 verified tasks are now **DONE** in TASKS.md. No separate external or human Technical Lead approval is claimed. P02-T003/T004 use self-hosted, licensed WOFF2 subsets with locale-conditional React preload hints rather than `next/font` route modules; this deviation and the measured payload/CLS results are disclosed below and accepted as a Phase 03 follow-up.
 
-**Recommendation: CONDITIONAL GO for formal Phase 02 technical review.** Do not start Phase 03 until the designated Technical Lead records their review and the owner separately approves the Phase 03 visual gate. No Phase 03 approval is asserted.
+**Status: Phase 02 formally closed by Project Owner approval dated October 15, 2026.** All 21 verified Phase 02 tasks are DONE. The owner accepted the documented font-loading deviation, Arabic CLS follow-up, and scoped Drei compatibility evidence. Codex provided technical-advisory review; no separate human Technical Lead approval is claimed. Phase 03 has not started, and the Homepage visual design is not approved.
 
 ## 2. Authorization and entry gate
 
 The Project Owner formally approved Phase 01 closure on 2026-10-15. The approval and corrective evidence are recorded in `PHASE-01-CLOSURE-REPORT.md` and `TASKS.md`. The technical-advisory record is attributed to Codex; it does not represent a separate human Technical Lead signature. The Phase 01 approval commit is present on `origin/main` at `8eb0d3166b374e8d52dd74926a655e887e4ba8db`.
 
-The accepted Phase 01 corrective/closure and Phase 02 source-document commit is local at `18b6467e28b7368c0eef12dba0c2dbe9ee3fcef1`. The independent owner audit, `PHASE-01-OWNER-ACCEPTANCE-AUDIT.md`, remains an untracked user artifact and was preserved. Phase 02 implementation is not pushed.
+The accepted Phase 01 corrective/closure and Phase 02 source-document commit is `18b6467e28b7368c0eef12dba0c2dbe9ee3fcef1`; Phase 02 implementation is in `5166846a1c81e19c7c4c6b64db2cb177325e22f4`, and its corrective evidence is in `f0380109d27920411ec67859bfdb237419afa8c5`. The independent Phase 02 audit remains unchanged. The untracked Phase 01 owner audit is a user artifact and was preserved.
 
 ## 3. Task-by-task acceptance matrix
 
@@ -106,13 +106,13 @@ The Phase 02 implementation is committed locally on `main` (commit subject: `Imp
 
 The implementation commit contains only Phase 02 implementation, tests, screenshots, font assets/licenses, TASKS.md evidence, and this report. `.env.local`, database state, build output, test reports, and unrelated user files are excluded.
 
-## 9. Phase 02 recommendation and Phase 03 handoff
+## 9. Historical pre-closure recommendation and Phase 03 handoff
 
-**CONDITIONAL GO for Technical Lead review.** Implementation and verification evidence are complete for all 21 task areas. Keep their workflow status **IN_REVIEW** until a human Technical Lead completes the exit review and records approval. The WOFF2/preload implementation deviation and Three.js test-renderer warning are disclosed above.
+**At the pre-closure review, the recommendation was CONDITIONAL GO for Technical Lead review.** At that point, implementation and verification evidence were complete for all 21 task areas, but their workflow status remained **IN_REVIEW** pending reviewer decisions. This historical recommendation is superseded by the owner closure decision in section 11.
 
-The token system, bilingual type/layout rules, reusable UI primitives, focus behavior, reduced-motion wrapper, analytics contract, labeled prototype slots, and Drei helper spike are ready for that review. Do not begin Phase 03 until the Technical Lead signs off Phase 02 and the owner explicitly approves the Phase 03 visual checkpoint. No owner visual approval or Phase 03 approval is claimed.
+The token system, bilingual type/layout rules, reusable UI primitives, focus behavior, reduced-motion wrapper, analytics contract, labeled prototype slots, and Drei helper spike were ready for review. No owner visual approval or Phase 03 approval was claimed in that historical section.
 
-## 10. Corrective acceptance addendum (2026-10-15)
+## 10. Corrective acceptance addendum before owner closure (2026-10-15)
 
 This addendum records the corrective pass against the complete historical independent report in [PHASE-02-ACCEPTANCE-AUDIT.md](PHASE-02-ACCEPTANCE-AUDIT.md). The original report is preserved unchanged. Evidence details and the exact-criteria matrix are in [PHASE-02-CORRECTIVE-ACCEPTANCE-REPORT.md](PHASE-02-CORRECTIVE-ACCEPTANCE-REPORT.md).
 
@@ -124,9 +124,9 @@ This addendum records the corrective pass against the complete historical indepe
 - **Drei:** scoped compatibility remains limited to `PerspectiveCamera` + a trivial mesh under the test renderer and clean package peer checks. The CJS deprecation reproduces from `@react-three/test-renderer` importing Three's CommonJS build; it is not an application, React, Fiber or Drei runtime warning. No browser Canvas/WebGL, Environment, lighting or production hero test is claimed. The selected camera helper is supported by the tested spike only; any broader scene requires its own browser smoke.
 - **Skipped browser cases:** unchanged 5 skips are legitimate project filters: two desktop runs skip mobile-drawer cases because desktop has no mobile drawer; three tablet/mobile/narrow runs skip desktop-only hover behavior. Both interaction types run in the applicable projects.
 - **Final verification:** `corepack pnpm install --frozen-lockfile`, `pnpm test` (5 files/27 tests; known test-renderer warning), `pnpm e2e` (95 passed/5 skipped), lint/logical CSS (45 source files), format check, typecheck, peer check, production build, `pnpm auth:check`, and in-container `pnpm db:check` passed. Production screenshots were captured with `next start` at 1440×900, 768×1024, 390×844 and 320×740. E2E Axe checks include both the closed page and actual open drawer; no serious or critical violations were reported.
-- **Workflow and gate:** all 21 tasks remain `IN_REVIEW`; no task is marked `DONE`. This addendum is technical-advisory evidence only, not a human Technical Lead approval, owner acceptance, or Phase 03 visual approval. No Phase 03 work has begun.
+- **Workflow at time of this addendum:** all 21 tasks were still `IN_REVIEW`; no task was marked `DONE`. This addendum records technical-advisory evidence only. The later owner closure decision is recorded in section 11. No Phase 03 work had begun.
 
-**Updated recommendation:** CONDITIONAL GO for final owner/technical review of Phase 02 evidence. Acceptance is not recorded here. The font-loading mechanism deviation and delayed Arabic CLS risk remain explicit review items; Drei readiness is scoped to the tested camera helper. Phase exit stays pending the project’s required reviewer decisions.
+**Status at the time of the corrective addendum:** CONDITIONAL GO for final owner/technical review. The later Project Owner decision in section 11 records closure and acceptance of the listed non-blocking limitations; it does not claim a separate human Technical Lead approval or Phase 03 visual approval.
 
 ## 11. Formal Phase 02 closure decision (2026-10-15)
 
@@ -140,6 +140,16 @@ The Project Owner accepts these recorded limitations for Phase 02 closure:
 2. **Drei:** the compatibility result is scoped to the tested `PerspectiveCamera` helper with the pinned dependency set. The `THREE_CJS_DEPRECATED` warning comes from the test renderer's CommonJS import of Three. Browser Canvas/WebGL, Environment, lighting, and the final hero scene were not tested; Phase 03 must run the intended browser smoke before relying on them.
 3. **Visual follow-up:** no approved project artwork was available for a ProjectShowcase media screenshot, and the corrective screenshot set does not claim visual acceptance for ProjectShowcase, loading/empty or 404 presentation. The task-level badge and DB-outage criteria pass; these broader presentation checks remain visual follow-ups. Phase 03's homepage design is not approved by this closure.
 
-The final regression run passed: 27 unit tests; 95 browser tests with five documented viewport-specific skips; open-drawer Axe scans with zero serious/critical violations; lint, formatting, typecheck, peer checks, frozen installation, production build, Payload authentication/persistence, and PostgreSQL connectivity. The final commit/push synchronization is recorded in the repository history and completion message.
+Closure verification rerun on 2026-10-15: `corepack pnpm install --frozen-lockfile` passed with pnpm 12.11.2; `corepack pnpm test` passed (5 files, 27 tests; known `THREE_CJS_DEPRECATED` warning from the test renderer); `corepack pnpm e2e` passed (95 passed, 5 expected viewport-specific skips), including EN/AR form label/input geometry below the sticky header at 1440, 768, 390, and 320px, Payload Admin/REST, disabled GraphQL routes, and Axe scans with zero serious/critical findings; lint/logical CSS (45 files), format, typecheck, peer checks, production build, `corepack pnpm auth:check`, Compose `db:check`, and Compose configuration passed. The production build completed without a warning. The running Compose app is loopback-bound and PostgreSQL is healthy without a published host port.
 
 **Phase 02 is formally closed by Project Owner approval dated 2026-10-15.** This closure does not approve the homepage design, start Phase 03, or claim a separate human Technical Lead signature. The prepared [PHASE-03-ENTRY-CHECKLIST.md](PHASE-03-ENTRY-CHECKLIST.md) is planning guidance only.
+
+
+## 12. Phase 03 handoff (preparation only)
+
+- **Phase 02:** closed; all 21 acceptance tasks are DONE, with Project Owner approval dated 2026-10-15.
+- **Accepted system:** Cobalt Blue & Porcelain tokens, bilingual EN/AR and RTL/LTR component foundation, responsive shell, and scoped motion/analytics/Drei readiness. This accepts the Phase 02 foundation only; it does not approve a Homepage composition.
+- **Follow-ups before relying on affected behavior:** remeasure Arabic font swap/CLS with representative hero typography and review the local WOFF2 loading approach; run browser Canvas/WebGL compatibility checks for the exact Drei camera/lighting/Environment helpers intended; preserve the current reduced-motion and responsive checks.
+- **Brand/assets:** the final Rakmyat logo/wordmark has not been supplied. The interim typographic lockup is permitted by DESIGN.md §18.3; obtain the final logo before final brand polish/favicons. Build the signature sculpture procedurally and trace every asset to VISUAL-ASSET-MATRIX.md. Do not use stock or fabricated client imagery; use clearly labeled fixtures for the prototype.
+- **Phase 03 entry:** complete the staging/provenance/preflight checks in PHASE-03-ENTRY-CHECKLIST.md, then implement only the six scoped elements and required locale/viewport/motion screenshot matrix. Record Gates 1 through 4 before presenting Gate 5 to the owner.
+- **Approval boundary:** Homepage visual direction remains unapproved until the owner makes the explicit P03-T018 Gate 5 decision. No Phase 03 implementation began during Phase 02 closure.
