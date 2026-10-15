@@ -46,7 +46,7 @@ Binding for every task in this plan, restated from DESIGN.md §5/§27/§43 and t
 | Hero materials | Cobalt enamel, polished ceramic, brushed metal, matte porcelain composite, translucent cobalt glass — with a visible grounding cast shadow and a subtle cobalt reflection onto the surrounding porcelain (DESIGN.md §13/§13.1) |
 | Accent discipline | Cobalt (`#2453FF`) at full saturation ≤10% of any porcelain-section viewport; excessive cobalt fills are an explicit anti-pattern (DESIGN.md §36) |
 | Typography color | `color.ink.primary` for headlines, `color.ink.secondary` for body — never the reverse |
-| Interactive borders | `color.border.interactive` (`#9AACD6`, 🟡 contrast estimate pending automated verification — Phase 01 task) on form fields; `color.border.hairline` (`#DCE3F1`) only on non-interactive dividers |
+| Interactive borders | `color.border.interactive` (`#6D82B8`, revised after the Phase 02 contrast verification) on form fields; `color.border.hairline` (`#DCE3F1`) only on non-interactive dividers |
 | Legacy palette | Navy/Cyan/Obsidian and all its hex values are retired — no task may reintroduce them |
 
 Any task whose implementation would visually contradict this table is out of spec by definition, independent of whether it otherwise "works."
@@ -206,8 +206,8 @@ All six gates from VISUAL-QUALITY-GATES.md are preserved, unmodified, and mapped
 - **Testing:** Vitest/RTL/Playwright/axe installed and running a trivial smoke test each.
 - **Quality gates:** none of the six visual gates apply yet — this phase is pre-visual.
 - **Exit criteria:** reproducible dev environment; compatible core dependency set (§6 table re-verified, not assumed); successful build + smoke tests; no unresolved critical integration blocker (the Payload/Turbopack risk is explicitly resolved one way or another, not carried forward silently).
-- **Approval authority:** technical review and project-owner acceptance. For this formal closure, the project owner confirms that the designated technical advisor reviewed and accepted the Phase 01 evidence. This owner-provided approval record does not claim separate or external Technical Lead approval.
-- **Closure status (2026-10-15):** all Phase 01 exit criteria passed; all 17 tasks are `DONE`; the owner and designated technical advisor accepted the evidence after final Git verification. Phase 01 is formally closed. Phase 02 has not started and requires separate authorization to begin.
+- **Approval authority:** evidence-based technical-advisory review and project-owner acceptance. On 2026-10-15, Codex reviewed the corrective implementation and acceptance evidence; the project owner separately recorded formal Phase 01 acceptance. This does not claim separate or external human Technical Lead approval.
+- **Closure status (2026-10-15):** all Phase 01 exit criteria passed; all 17 tasks are `DONE`; Codex's advisory review and the project owner's acceptance are recorded. Local `main` and `origin/main` are synchronized. Phase 01 is formally closed. The project owner separately authorized Phase 02 kickoff on 2026-10-15.
 
 ### PHASE 02 — Design System & Visual Prototype Foundation
 
