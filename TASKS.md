@@ -1,7 +1,7 @@
 # RAKMYAT — TASKS.md
 ### Executable Task Register (Phases 01–10)
 
-**Execution status (2026-10-15):** Phase 01 foundation and the owner-approved CMS administrator authentication exception have been implemented, reviewed, validated, and committed as `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f` on `main`. P01-T006's example env file and P01-T017's frozen lockfile are included in that commit. P01-T009's former first-user blocker is resolved. All Phase 01 tasks remain `IN_REVIEW` pending Technical Lead approval; no such approval is claimed.
+**Execution status (2026-10-15):** Phase 01 is formally closed: all 17 tasks are `DONE` after the project owner accepted the technical evidence and the designated technical advisor reviewed it, subject to final Git verification, which is now complete. No separate external Technical Lead approval is claimed. Phase 02 has not started.
 **Governing plan:** [PLAN.md](./PLAN.md) — read §20 for phase goals/exit criteria before executing any task below; this file is the decomposition of that plan, not an independent source of truth.
 **Task ID convention:** `P{phase}-T{number}`, stable and unique, zero-padded to 3 digits.
 **Status values:** `TODO` · `IN_PROGRESS` · `BLOCKED` · `IN_REVIEW` · `DONE` — no other value is valid.
@@ -15,7 +15,7 @@
 Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation with one narrowly scoped, owner-approved Payload Users authentication collection for CMS administrator first-user setup. No Phase 04 business collections, globals, content schemas, or editorial features.
 
 #### P01-T001 — Re-verify the full dependency compatibility matrix against live registries
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** None
+- **Status:** DONE · **Priority:** P0 · **Depends on:** None
 - **Source:** TECHNICAL-ARCHITECTURE.md §4–§5, §32
 - **Objective:** Before pinning any version, re-query the npm registry / official docs for Next.js, React, Payload core + `@payloadcms/next` + `@payloadcms/db-postgres` + `@payloadcms/richtext-lexical`, `@react-three/fiber`, `@react-three/drei`, Tailwind CSS, `next-intl`, GSAP + `@gsap/react`, Zod + `@hookform/resolvers`, Vitest, Playwright, `@axe-core/playwright`, `@sentry/nextjs`, Node.js LTS, pnpm — confirming or correcting every row marked `VERIFY-AT-IMPLEMENTATION`/`UNVERIFIED` in TECHNICAL-ARCHITECTURE.md §4.
 - **Inputs/Files:** none created — this is a research task; output is a short written confirmation (comment block or `docs/dependency-verification.md` is explicitly NOT a new planning doc per the no-extra-files rule — record the result directly in this task's completion evidence instead).
@@ -23,12 +23,12 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** N/A (research task)
 - **Acceptance criteria:** Every `VERIFY-AT-IMPLEMENTATION`/`UNVERIFIED` row in TECHNICAL-ARCHITECTURE.md §4 has an explicit, dated, sourced resolution recorded in this task's completion evidence.
-- **DoD evidence (2026-10-14; npm registry metadata queried with `pnpm view <package> version peerDependencies engines --json`; official Next/Payload docs and release notes cross-checked):** Registry latest → `next` 16.4.1 (Node >=20.9; React/React DOM peer ^19), `react`/`react-dom` 19.3.1 (React DOM requires React ^19.3.1), `payload` and all three required `@payloadcms/*` packages 3.90.2; Payload packages must stay exactly matched, and `@payloadcms/next@3.90.2` requires Next >=16.3.3 <17.0.0. `@payloadcms/richtext-lexical` peer React/React DOM ranges include 19.3.1. `tailwindcss`/`@tailwindcss/postcss` 4.3.3; `next-intl` 4.14.9 (Next 12–16, React 16.8–19); `gsap` 3.15.0; `@gsap/react` 2.1.2 (GSAP ^3.12.5, React >=17); `three` 0.186.1; `@react-three/fiber` 9.8.1 (React/DOM >=19 <19.4, Three >=0.156); `@react-three/drei` 10.7.9 (React 19, Fiber ^9); `embla-carousel-react` 8.6.0 (React 16.8–19); `radix-ui` 1.8.1 (React/DOM 16.8–19); `lucide-react` 1.57.0 (React 16.5–19); `react-hook-form` 7.90.0 (React 16.8–19); `zod` 4.6.7; `@hookform/resolvers` 5.9.1 (Zod ^3.25 or ^4, RHF ^7.55); `vitest` 5.0.4 (Vite ^6.4/^7/^8; Node ^22.12/^24/>=26); `@testing-library/react` 16.3.3 (React/DOM ^18 or ^19); `@playwright/test` 1.64.1 (Node >=20); `@axe-core/playwright` 4.13.0 (Playwright Core >=1); ESLint latest 10.12.0 but Phase 01 task explicitly locks ESLint 9, so selected 9.39.2 (Next config peer >=9); Prettier 3.9.10; `@sentry/nextjs` 11.7.0 (Next ^14–16; Node >=20.19); TypeScript latest 7.0.2, but architecture asks latest 5.x, so selected 5.9.3. Vitest's Vite 8 peer chain required matching `esbuild` 0.28.2 and `tsx` 4.22.4; `pnpm peers check` now reports no unmet peers. Node.js releases checked on 2026-10-14 show Node 24.22.0 as current LTS; `.nvmrc` pins 24.22.0, while this workstation's existing runtime is 24.16.0 (still within the supported 24.x line). Node 26 remains Current, not LTS. Corepack successfully fetched and ran the architecture-pinned pnpm 12.13.0. Compatibility corrections: Next floor is 16.3.3 for the chosen Payload release, React 19.3.1 is within current React peers, and Fiber/Drei current majors pair on React 19. No application package was installed before these checks. Verification is limited to registry metadata and official framework/CMS documentation; the integrated build remains P01-T009. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-14; npm registry metadata queried with `pnpm view <package> version peerDependencies engines --json`; official Next/Payload docs and release notes cross-checked):** Registry latest → `next` 16.4.1 (Node >=20.9; React/React DOM peer ^19), `react`/`react-dom` 19.3.1 (React DOM requires React ^19.3.1), `payload` and all three required `@payloadcms/*` packages 3.90.2; Payload packages must stay exactly matched, and `@payloadcms/next@3.90.2` requires Next >=16.3.3 <17.0.0. `@payloadcms/richtext-lexical` peer React/React DOM ranges include 19.3.1. `tailwindcss`/`@tailwindcss/postcss` 4.3.3; `next-intl` 4.14.9 (Next 12–16, React 16.8–19); `gsap` 3.15.0; `@gsap/react` 2.1.2 (GSAP ^3.12.5, React >=17); `three` 0.186.1; `@react-three/fiber` 9.8.1 (React/DOM >=19 <19.4, Three >=0.156); `@react-three/drei` 10.7.9 (React 19, Fiber ^9); `embla-carousel-react` 8.6.0 (React 16.8–19); `radix-ui` 1.8.1 (React/DOM 16.8–19); `lucide-react` 1.57.0 (React 16.5–19); `react-hook-form` 7.90.0 (React 16.8–19); `zod` 4.6.7; `@hookform/resolvers` 5.9.1 (Zod ^3.25 or ^4, RHF ^7.55); `vitest` 5.0.4 (Vite ^6.4/^7/^8; Node ^22.12/^24/>=26); `@testing-library/react` 16.3.3 (React/DOM ^18 or ^19); `@playwright/test` 1.64.1 (Node >=20); `@axe-core/playwright` 4.13.0 (Playwright Core >=1); ESLint latest 10.12.0 but Phase 01 task explicitly locks ESLint 9, so selected 9.39.2 (Next config peer >=9); Prettier 3.9.10; `@sentry/nextjs` 11.7.0 (Next ^14–16; Node >=20.19); TypeScript latest 7.0.2, but architecture asks latest 5.x, so selected 5.9.3. Vitest's Vite 8 peer chain required matching `esbuild` 0.28.2 and `tsx` 4.22.4; `pnpm peers check` now reports no unmet peers. Node.js releases checked on 2026-10-14 show Node 24.22.0 as current LTS; `.nvmrc` pins 24.22.0, while this workstation's existing runtime is 24.16.0 (still within the supported 24.x line). Node 26 remains Current, not LTS. Corepack successfully fetched and ran the architecture-pinned pnpm 12.13.0. Compatibility corrections: Next floor is 16.3.3 for the chosen Payload release, React 19.3.1 is within current React peers, and Fiber/Drei current majors pair on React 19. No application package was installed before these checks. Verification is limited to registry metadata and official framework/CMS documentation; the integrated build remains P01-T009. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 **Registry recheck (2026-10-15):** Direct npm registry queries confirm the stack's locked latest versions remain current except `@react-three/fiber`, now 9.8.2 (its peer range includes React/React DOM >=19 <19.4 and Three >=0.156; Drei 10.7.9 accepts Fiber ^9). The installed stack remains peer-clean. The pnpm default `latest` dist-tag is 12.11.2; 12.13.0 is under `next-12`, so the project pin and lockfile were corrected to stable pnpm 12.11.2. Frozen installation passes with this pin. Node.js official release listings on 2026-10-15 show 24.22.0 LTS and 26.12.0 Current; `.nvmrc` remains on 24.22.0. Sources: npm registry metadata (`pnpm view` / `npm view`, queried 2026-10-15); https://nodejs.org/en/blog/release (accessed 2026-10-15).
 
 #### P01-T002 — Decide the Payload `@payloadcms/next` ↔ Next.js 16 Turbopack bundler strategy (documentation-only decision)
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T001
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T001
 - **Source:** TECHNICAL-ARCHITECTURE.md §4, §5, §32, ADR-008
 - **Objective:** Using only T001's re-verified evidence (official docs/release notes/changelogs — no application exists yet to test against), decide and document the bundler strategy (pin to a confirmed-compatible Next 16.2.x/16.3.x patch, force webpack mode via a CLI flag/config setting, or rely on a confirmed Payload patch that has resolved the conflict natively). **This task produces a recorded decision only — it does not and cannot validate that decision against a real build, because no Next.js application exists yet at this point in the task graph (that is P01-T003, which does not depend on this task for exactly that reason).** The decision is validated for real in P01-T009, once both the app (T003) and Payload's integration (T009) exist to validate it against.
 - **Inputs/Files:** None created — the decision is recorded in this task's completion evidence and consumed as an input by P01-T009.
@@ -36,10 +36,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** Bundler choice affects dev-loop speed only, not production budgets.
 - **Tests:** N/A — no application exists yet for this task to test against; see P01-T009 for the real validation.
 - **Acceptance criteria:** A recorded, sourced decision exists (which bundler mode, and why) before P01-T009 begins — not a guess, and not deferred silently.
-- **DoD evidence (2026-10-14):** Select Webpack for both development and production build using the documented Next CLI `--webpack` flag. The chosen `@payloadcms/next@3.90.2` declares support for Next >=16.3.3 <17, and Payload's official installation docs identify `withPayload()` as the supported Next config integration; Next 16's official CLI documents `--webpack` for both `next dev` and `next build`. This avoids relying on a Turbopack compatibility workaround for Payload's webpack config hook. This is a documentation-stage choice only; P01-T009 must prove the integrated build and `/admin` route before this decision is considered technically validated. Sources: https://payloadcms.com/docs/getting-started/installation (accessed 2026-10-14); https://nextjs.org/docs/app/api-reference/cli/next (accessed 2026-10-14); live peer metadata recorded in P01-T001. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-14):** Select Webpack for both development and production build using the documented Next CLI `--webpack` flag. The chosen `@payloadcms/next@3.90.2` declares support for Next >=16.3.3 <17, and Payload's official installation docs identify `withPayload()` as the supported Next config integration; Next 16's official CLI documents `--webpack` for both `next dev` and `next build`. This avoids relying on a Turbopack compatibility workaround for Payload's webpack config hook. This is a documentation-stage choice only; P01-T009 must prove the integrated build and `/admin` route before this decision is considered technically validated. Sources: https://payloadcms.com/docs/getting-started/installation (accessed 2026-10-14); https://nextjs.org/docs/app/api-reference/cli/next (accessed 2026-10-14); live peer metadata recorded in P01-T001. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T003 — Initialize the Next.js App Router project (TypeScript strict, pnpm)
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T001
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T001
 - **Source:** TECHNICAL-ARCHITECTURE.md §3, §9
 - **Objective:** Create the single Next.js application with App Router, TypeScript strict mode, and pnpm as the package manager (via Corepack pin, not a global install).
 - **Inputs/Files:** `package.json`, `tsconfig.json` (`strict: true`, `moduleResolution: "bundler"` per `@hookform/resolvers`'s subpath-export requirement), `next.config.ts`.
@@ -47,10 +47,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** No secrets committed; `.gitignore` covers `.env*`. · **Performance:** N/A
 - **Tests:** `pnpm build` succeeds on a bare scaffold.
 - **Acceptance criteria:** `pnpm dev` and `pnpm build` both succeed; `tsc --noEmit` passes with zero errors on the scaffold.
-- **DoD evidence:** `corepack pnpm dev` runs in the Compose app; `corepack pnpm build` succeeds; strict TypeScript check passes. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** `corepack pnpm dev` runs in the Compose app; `corepack pnpm build` succeeds; strict TypeScript check passes. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T004 — Configure Tailwind CSS v4 (CSS-first `@theme`, no `tailwind.config.js`)
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T003
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T003
 - **Source:** TECHNICAL-ARCHITECTURE.md §4 (Tailwind row), §14
 - **Objective:** Install `tailwindcss`/`@tailwindcss/postcss` and establish the `@theme` CSS entry point that DESIGN.md §34's token block will populate in Phase 02 — this task only wires the pipeline, it does not populate tokens yet.
 - **Inputs/Files:** `postcss.config.mjs`, `app/globals.css` (empty `@theme {}` block).
@@ -58,10 +58,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** A trivial Tailwind utility class renders correctly in a smoke page.
 - **Acceptance criteria:** No `tailwind.config.js` file exists anywhere in the repo; `@theme` block compiles.
-- **DoD evidence:** Tailwind v4 PostCSS pipeline and CSS `@theme {}` compile in the successful production build. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Tailwind v4 PostCSS pipeline and CSS `@theme {}` compile in the successful production build. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T005 — Configure ESLint + Prettier
-- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P01-T003
+- **Status:** DONE · **Priority:** P1 · **Depends on:** P01-T003
 - **Source:** TECHNICAL-ARCHITECTURE.md §3, §26
 - **Objective:** Flat-config ESLint 9.x + Prettier 3.x, including Next.js's own recommended rule set.
 - **Inputs/Files:** `eslint.config.mjs`, `.prettierrc`.
@@ -69,10 +69,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** `pnpm lint` runs clean on the scaffold.
 - **Acceptance criteria:** Lint/format scripts exist in `package.json` and pass on the current scaffold.
-- **DoD evidence:** `corepack pnpm lint`, `corepack pnpm format:check`, and `corepack pnpm typecheck` pass. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** `corepack pnpm lint`, `corepack pnpm format:check`, and `corepack pnpm typecheck` pass. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T006 — Establish environment/secrets configuration convention
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T003
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T003
 - **Source:** TECHNICAL-ARCHITECTURE.md §21, §27
 - **Objective:** Define the `.env.local`/`.env.example` convention (DB connection string, Payload secret, Sentry DSN placeholder, analytics placeholder), untracked by git, with `.env.example` committed as a template with no real values.
 - **Inputs/Files:** `.env.example`, `.gitignore` update.
@@ -80,10 +80,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** This is itself the primary security control for this task. · **Performance:** N/A
 - **Tests:** N/A (convention/config task).
 - **Acceptance criteria:** `.env.local` is git-ignored; `.env.example` contains only placeholder keys.
-- **DoD evidence (2026-10-15):** `git check-ignore -v .env.local` confirms the real local env file is ignored; `.env.example` contains nine placeholder-only entries and no real values. The safe template is committed in `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f`. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** `git check-ignore -v .env.local` confirms the real local env file is ignored; `.env.example` contains nine placeholder-only entries and no real values. The safe template is committed in `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f`. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T007 — Author the Docker Compose development stack
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T003
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T003
 - **Source:** TECHNICAL-ARCHITECTURE.md §27
 - **Objective:** `docker-compose.yml` (dev variant) with `app` and `db` services on an internal network, no published DB port.
 - **Inputs/Files:** `docker-compose.yml`, `Dockerfile` (dev stage).
@@ -91,10 +91,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** DB port not published to host; non-root container user. · **Performance:** N/A
 - **Tests:** `docker compose up` brings up both services without error.
 - **Acceptance criteria:** `app` can reach `db` over the internal network; `db` port is not reachable from the host.
-- **DoD evidence:** `docker compose --env-file .env.local up --build` builds the app image and starts app + PostgreSQL; app binds to 127.0.0.1:3101, PostgreSQL 5432 is not published, and the app container runs as `node`. Services share a project-private bridge network. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** `docker compose --env-file .env.local up --build` builds the app image and starts app + PostgreSQL; app binds to 127.0.0.1:3101, PostgreSQL 5432 is not published, and the app container runs as `node`. Services share a project-private bridge network. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T008 — Provision PostgreSQL dev service and verify connectivity
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T007
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T007
 - **Source:** TECHNICAL-ARCHITECTURE.md §18, §27
 - **Objective:** Confirm the `app` container can open a connection to `db` using the pinned `@payloadcms/db-postgres` adapter's expected connection-string shape, before any collection exists.
 - **Inputs/Files:** `.env.local` `DATABASE_URI` value (local only, never committed).
@@ -102,10 +102,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** Credentials local-only. · **Performance:** N/A
 - **Tests:** Connection test script exits 0.
 - **Acceptance criteria:** A successful round-trip query against `db` from `app`.
-- **DoD evidence:** `corepack pnpm db:check` succeeds from the app container before and after PostgreSQL restart; the named database volume is retained. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** `corepack pnpm db:check` succeeds from the app container before and after PostgreSQL restart; the named database volume is retained. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T009 — Payload CMS compatibility spike (auth-only Users collection) + real validation of T002's bundler decision
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T002, P01-T003, P01-T004, P01-T008
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T002, P01-T003, P01-T004, P01-T008
 - **Source:** TECHNICAL-ARCHITECTURE.md §17, ADR-001/ADR-002/ADR-008
 - **Objective:** Install Payload core + the Postgres adapter + `@payloadcms/next` at the exact matched version (T001), wire `withPayload()` in `next.config.ts` **applying T002's recorded bundler decision**, and boot the admin UI with one minimal `Users` authentication collection solely for CMS administrator authentication and first-user setup. This auth-only exception was explicitly approved by the owner on 2026-10-15. **This is the task that actually closes out ADR-008/T002's decision with a real build** — T002 could only record a decision from documentation evidence since no application existed yet; this task is the first point in the graph where both the app (T003) and Payload's integration exist simultaneously, so it is the correct place for the real `next build`/`next dev` proof, not T002.
 - **Inputs/Files:** `payload.config.ts`, `collections/Users.ts` (Payload auth fields only; no custom business fields), `next.config.ts` (bundler-mode setting per T002's decision), `app/(payload)/admin/[[...segments]]/page.tsx`.
@@ -113,10 +113,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** Proves the integration boots; no real schema. · **Security:** Default Payload auth active even on the empty admin. · **Performance:** N/A
 - **Tests:** Production Webpack build; Playwright admin first-user creation and login; unauthenticated user creation denial; database-backed user lookup; login again after PostgreSQL container restart.
 - **Acceptance criteria:** Build succeeds (closing out T002's decision for real); admin UI renders without errors; first admin user can be created and log in; hashed auth data survives a PostgreSQL restart; public user registration is denied after the initial setup; only the auth-only Users collection is configured.
-- **DoD evidence (2026-10-15):** Production Webpack build succeeds with Payload 3.90.2 and the single auth-only `Users` collection. The Admin UI first-user form created a temporary integration account; login and authenticated user lookup succeeded before and after a Docker Compose PostgreSQL restart, proving persistence. Unauthenticated `GET /api/users` and `POST /api/users` were denied. The temporary account was deleted. No Phase 04 business collections, globals, custom content fields, roles, or editorial features were added. Owner approval for this narrow exception is recorded above. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** Production Webpack build succeeds with Payload 3.90.2 and the single auth-only `Users` collection. The Admin UI first-user form created a temporary integration account; login and authenticated user lookup succeeded before and after a Docker Compose PostgreSQL restart, proving persistence. Unauthenticated `GET /api/users` and `POST /api/users` were denied. The temporary account was deleted. No Phase 04 business collections, globals, custom content fields, roles, or editorial features were added. Owner approval for this narrow exception is recorded above. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T010 — Implement root locale-negotiation routing shell
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T003
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T003
 - **Source:** PRODUCT.md §14; TECHNICAL-ARCHITECTURE.md §11
 - **Objective:** `/` performs the one-time negotiation sequence (valid locale cookie → quality-ordered supported `Accept-Language` → `en` fallback, with no geo detection) and redirects into `/en` or `/ar`, never serving content directly.
 - **Inputs/Files:** `proxy.ts`.
@@ -124,10 +124,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** The negotiated locale determines the subsequent `<html dir/lang>` in T011. · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** Negotiation adds no more than one redirect hop.
 - **Tests:** Unit test for the negotiation function (no cookie + Arabic `Accept-Language` → `/ar`; no cookie + other → `/en`; cookie present → honors it regardless of header).
 - **Acceptance criteria:** Matches PRODUCT.md §14's owner-approved policy: valid cookie, then supported language preference, then English; no geo lookup; never defaults to Arabic globally.
-- **DoD evidence (2026-10-15):** Owner approved the no-geo cookie → `Accept-Language` → English policy in this session. Unit tests cover cookie precedence, quality ordering, unsupported/missing languages, out-of-range quality rejection, and English fallback. Playwright verifies Arabic header redirect/cookie, saved-cookie precedence, and `q` preference at all three viewport projects (21/21 E2E tests passed). Cookie lifetime is one year. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** Owner approved the no-geo cookie → `Accept-Language` → English policy in this session. Unit tests cover cookie precedence, quality ordering, unsupported/missing languages, out-of-range quality rejection, and English fallback. Playwright verifies Arabic header redirect/cookie, saved-cookie precedence, and `q` preference at all three viewport projects (27/27 E2E tests passed). Cookie lifetime is one year. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T011 — Configure `next-intl` base routing (`/en`, `/ar`)
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T003, P01-T010
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T003, P01-T010
 - **Source:** TECHNICAL-ARCHITECTURE.md §11–§13
 - **Objective:** Wire `next-intl`'s routing config for the two locales, the internationalized `Link`/`useRouter`/`redirect` APIs, and the `app/[locale]/layout.tsx` that sets `<html lang dir>` per locale (`ar-EG`/`rtl` for `ar`, `en`/`ltr` for `en`).
 - **Inputs/Files:** `i18n/routing.ts`, `app/[locale]/layout.tsx`, `messages/en.json`, `messages/ar.json` (empty shells, populated in Phase 02+).
@@ -135,10 +135,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** This task *is* the RTL/LTR foundation — `dir` set at `<html>`, never a wrapper `div`. · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** Component test asserting `document.documentElement.dir === 'rtl'` on `/ar/*` and `'ltr'` on `/en/*`.
 - **Acceptance criteria:** Both locale trees resolve; `dir`/`lang` correct at the document root, not simulated.
-- **DoD evidence:** Playwright passes `/en` and `/ar` document checks: `lang=en`/`dir=ltr` and `lang=ar-EG`/`dir=rtl`; next-intl messages load in both locale trees. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Playwright passes `/en` and `/ar` document checks: `lang=en`/`dir=ltr` and `lang=ar-EG`/`dir=rtl`; next-intl messages load in both locale trees. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T012 — Scaffold the full directory structure
-- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P01-T003
+- **Status:** DONE · **Priority:** P1 · **Depends on:** P01-T003
 - **Source:** TECHNICAL-ARCHITECTURE.md §9
 - **Objective:** Create the empty directory skeleton (`collections/`, `globals/`, `blocks/`, `components/motion`, `components/three`, `components/ui`, `components/sections`, `lib/payload`, `lib/i18n`, `lib/seo`, `lib/analytics`, `lib/validation`) so later phases have a fixed, agreed target.
 - **Inputs/Files:** Empty directories with a `.gitkeep` or trivial index placeholder where needed.
@@ -146,10 +146,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** N/A
 - **Acceptance criteria:** Directory tree matches TECHNICAL-ARCHITECTURE.md §9 exactly.
-- **DoD evidence:** Required Phase 01 folders exist under `app/`, `collections/`, `globals/`, `blocks/`, `components/`, and `lib/` at the architecture paths. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** Required §9 folders exist, and the locale homepage is at `app/[locale]/(marketing)/page.tsx`; Payload admin and API handlers remain under `(payload)` and resolve to `/admin` and `/api/*`. E2E/API checks confirm public URLs remain unchanged. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T013 — Baseline Vitest + React Testing Library setup
-- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P01-T003
+- **Status:** DONE · **Priority:** P1 · **Depends on:** P01-T003
 - **Source:** TECHNICAL-ARCHITECTURE.md §26
 - **Objective:** Install and configure Vitest + RTL with one trivial smoke test (renders a `<div>`, asserts text content).
 - **Inputs/Files:** `vitest.config.ts`, `tests/smoke.test.tsx`.
@@ -157,10 +157,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** The smoke test itself.
 - **Acceptance criteria:** `pnpm test` runs and passes.
-- **DoD evidence (2026-10-15):** `corepack pnpm test`: 2 files passed, 7 tests passed, including the React Testing Library render smoke test and locale negotiation cases. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** `corepack pnpm test`: 2 files passed, 7 tests passed, including the React Testing Library render smoke test and locale negotiation cases. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T014 — Baseline Playwright setup
-- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P01-T003, P01-T011
+- **Status:** DONE · **Priority:** P1 · **Depends on:** P01-T003, P01-T011
 - **Source:** TECHNICAL-ARCHITECTURE.md §26, §36
 - **Objective:** Install `@playwright/test`, configure projects for desktop/mobile viewports, write one smoke test (homepage loads with HTTP 200, both `/en` and `/ar`).
 - **Inputs/Files:** `playwright.config.ts`, `e2e/smoke.spec.ts`.
@@ -168,10 +168,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** Smoke test checks both locale roots. · **Responsive:** Viewport projects configured. · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** The smoke spec itself.
 - **Acceptance criteria:** `pnpm e2e` passes against the dev server.
-- **DoD evidence (2026-10-15):** Final `corepack pnpm e2e`: 21/21 passed across desktop (1440), tablet (768), and mobile (390) projects, covering both locale routes, cookie precedence, and Accept-Language quality ordering. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** Final `corepack pnpm e2e`: 27/27 passed across desktop (1440), tablet (768), and mobile (390) projects, covering locale routes, cookie precedence, Accept-Language quality ordering, Payload Admin/REST access, and disabled GraphQL routes. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T015 — Baseline `@axe-core/playwright` setup
-- **Status:** IN_REVIEW · **Priority:** P1 · **Depends on:** P01-T014
+- **Status:** DONE · **Priority:** P1 · **Depends on:** P01-T014
 - **Source:** TECHNICAL-ARCHITECTURE.md §26
 - **Objective:** Wire `@axe-core/playwright` into the Playwright suite with one smoke accessibility scan against the bare homepage shell.
 - **Inputs/Files:** `e2e/a11y-smoke.spec.ts`.
@@ -179,10 +179,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** Scan runs against both locale roots. · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** The smoke scan itself.
 - **Acceptance criteria:** Zero critical/serious violations on the bare shell.
-- **DoD evidence (2026-10-15):** Final `corepack pnpm e2e`: six axe scans (English and Arabic at all three viewport projects) passed with no serious or critical violations. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** Final `corepack pnpm e2e`: six axe scans (English and Arabic at all three viewport projects) passed with no serious or critical violations. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T016 — Baseline Sentry SDK (no-op safe)
-- **Status:** IN_REVIEW · **Priority:** P2 · **Depends on:** P01-T003, P01-T006
+- **Status:** DONE · **Priority:** P2 · **Depends on:** P01-T003, P01-T006
 - **Source:** TECHNICAL-ARCHITECTURE.md §31
 - **Objective:** Install `@sentry/nextjs`, wire the standard Next.js integration, but guard initialization so a missing/placeholder DSN never throws — safe no-op until a real DSN is configured.
 - **Inputs/Files:** `sentry.client.config.ts`, `sentry.server.config.ts`, `instrumentation.ts`.
@@ -190,10 +190,10 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** No DSN committed. · **Performance:** Negligible bundle impact verified.
 - **Tests:** App boots with `SENTRY_DSN` unset, no runtime error.
 - **Acceptance criteria:** Build and dev server both succeed with and without a DSN present.
-- **DoD evidence:** Production builds pass with Sentry DSN unset and with the `REPLACE_WITH_VALID_SENTRY_DSN` placeholder; development server and browser checks pass with DSN unset. Placeholder guards prevent SDK initialization. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence:** Production builds pass with Sentry DSN unset and with the `REPLACE_WITH_VALID_SENTRY_DSN` placeholder; development server and browser checks pass with DSN unset. Placeholder guards prevent SDK initialization. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
 #### P01-T017 — Pin and lock final Phase 01 dependency versions
-- **Status:** IN_REVIEW · **Priority:** P0 · **Depends on:** P01-T001, P01-T002, P01-T009, P01-T013, P01-T014, P01-T015, P01-T016
+- **Status:** DONE · **Priority:** P0 · **Depends on:** P01-T001, P01-T002, P01-T009, P01-T013, P01-T014, P01-T015, P01-T016
 - **Source:** TECHNICAL-ARCHITECTURE.md §4, §32–§34
 - **Objective:** Commit the generated `pnpm-lock.yaml` reflecting every package actually installed in this phase, and record the final Node.js LTS decision (24 vs. 26, per T001's re-check against the 2026-10-28 Active-LTS cutover date).
 - **Inputs/Files:** `pnpm-lock.yaml`, `.nvmrc`/`package.json` `engines` field.
@@ -201,9 +201,9 @@ Goal/exit criteria: PLAN.md §20 Phase 01. Environment/dependency foundation wit
 - **RTL/LTR:** N/A · **Responsive:** N/A · **Motion:** N/A · **CMS:** N/A · **Security:** N/A · **Performance:** N/A
 - **Tests:** CI (once it exists) installs from the committed lockfile without drift.
 - **Acceptance criteria:** Lockfile committed; Node version decision recorded with its date-based rationale.
-- **DoD evidence (2026-10-15):** `corepack pnpm install --frozen-lockfile` passes with stable pnpm 12.11.2, and `pnpm-lock.yaml` records the exact pnpm and dependency graph. `.nvmrc` pins Node 24.22.0 LTS; this workstation has Node 24.16.0, and the Docker image uses Node 24 Alpine. The release-age gate remains enabled with exact-version exemptions for recently published locked packages. `pnpm-lock.yaml` is committed in `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f`. Reviewer: Technical Lead; Approval: Pending.
+- **DoD evidence (2026-10-15):** `corepack pnpm install --frozen-lockfile` passes with stable pnpm 12.11.2, and `pnpm-lock.yaml` records the exact pnpm and dependency graph. `.nvmrc` pins Node 24.22.0 LTS; this workstation has Node 24.16.0, and the Docker image uses Node 24 Alpine. The release-age gate remains enabled with exact-version exemptions for recently published locked packages. `pnpm-lock.yaml` is committed in `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f`. Approval: project owner acceptance and designated technical advisor review (owner-reported 2026-10-15; no separate external Technical Lead approval is claimed).
 
-**Phase 01 exit:** all 17 tasks `DONE`; PLAN.md §20 Phase 01 exit criteria met; technical-lead sign-off recorded.
+**Phase 01 exit:** all 17 tasks `DONE`; PLAN.md §20 Phase 01 exit criteria met; project-owner acceptance and designated technical advisor review recorded on 2026-10-15 after final Git verification. No separate/external Technical Lead sign-off is claimed.
 
 ### Phase 01 closure review (2026-10-15)
 
@@ -240,6 +240,15 @@ This dated revalidation supersedes any earlier Phase 01 closure statements above
 **Corrective outcomes:** P01-T012's documented route-group structure is now implemented. GraphQL and its development playground are disabled/absent for Phase 01; regression checks confirm GraphQL POST and playground requests return 404 while REST and Admin remain available. The empty closure report was restored byte-for-byte from the parent commit before this addendum was written; its prior state at `6d8bd7617e9d1cf74627af5c8033f57b14d6ccd3` was a two-byte newline-only file. The full production build completed with no compiler warning lines; the earlier generic warning did not recur. The reviewed corrective implementation commit is `6fa5f753af6a05736deebb7d0f82644e4e0204dd` on local `main`; it has not been pushed. The report's commit-evidence update is committed separately.
 
 **Formal gate:** Technical Lead review/approval and owner acceptance are still pending. Keep all tasks `IN_REVIEW`; Phase 02 remains NO-GO until the authorized reviewers record their decisions. No Phase 02 implementation has begun.
+
+
+### Formal Phase 01 closure (2026-10-15)
+
+The project owner reports that the designated technical advisor reviewed and accepted the complete Phase 01 evidence matrix, subject to final Git verification. The owner now records acceptance after that verification. This single phase-level approval applies to each of the 17 task criteria above; each task has passing implementation/test evidence and is marked `DONE`. No named signature, independent execution, or separate external Technical Lead approval is asserted. The owner and advisor are not named in this record because no names or signatures were supplied.
+
+Final Git verification reviewed the three corrective commits on `main`, confirmed they contain only Phase 01 corrective code, tests, architecture, task, and closure-report changes, found no sensitive paths or high-confidence credential patterns in those commits, and verified that `origin/main` at `6d8bd7617e9d1cf74627af5c8033f57b14d6ccd3` was their ancestor. The formal-closure documentation commit is also limited to Phase 01 records. No push has yet occurred at the time this entry was written; see the final closure report for the post-push result.
+
+GraphQL remains intentionally disabled. Re-enabling it requires resolving the duplicate GraphQL scalar/module defect and adding regression tests for the API and playground. Existing future-phase documents and the independent owner audit remain untracked and preserved. Phase 02 is not started.
 
 ---
 

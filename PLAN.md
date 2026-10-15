@@ -206,7 +206,8 @@ All six gates from VISUAL-QUALITY-GATES.md are preserved, unmodified, and mapped
 - **Testing:** Vitest/RTL/Playwright/axe installed and running a trivial smoke test each.
 - **Quality gates:** none of the six visual gates apply yet — this phase is pre-visual.
 - **Exit criteria:** reproducible dev environment; compatible core dependency set (§6 table re-verified, not assumed); successful build + smoke tests; no unresolved critical integration blocker (the Payload/Turbopack risk is explicitly resolved one way or another, not carried forward silently).
-- **Approval authority:** technical lead sign-off (no owner visual approval needed yet).
+- **Approval authority:** technical review and project-owner acceptance. For this formal closure, the project owner confirms that the designated technical advisor reviewed and accepted the Phase 01 evidence. This owner-provided approval record does not claim separate or external Technical Lead approval.
+- **Closure status (2026-10-15):** all Phase 01 exit criteria passed; all 17 tasks are `DONE`; the owner and designated technical advisor accepted the evidence after final Git verification. Phase 01 is formally closed. Phase 02 has not started and requires separate authorization to begin.
 
 ### PHASE 02 — Design System & Visual Prototype Foundation
 

@@ -135,3 +135,37 @@ No task is marked `DONE`. `PASS` below means the stated technical acceptance cri
 The audit started from `main` at `6d8bd7617e9d1cf74627af5c8033f57b14d6ccd3`, synchronized with `origin/main`. `pnpm-lock.yaml` and `.env.example` are tracked in the earlier Phase 01 implementation commit. The reviewed corrective implementation commit is `6fa5f753af6a05736deebb7d0f82644e4e0204dd` on local `main`; the documentation-only commit recording this SHA follows it in history. The later-phase/design files and the independent audit remain untracked and are preserved. No push was performed.
 
 All technical criteria in the matrix have passing current evidence, but formal closure remains **NO-GO** until a Technical Lead has reviewed the evidence and the project owner records acceptance. No task is marked `DONE`; no owner or Technical Lead approval is asserted. Phase 02 has not started. Future-phase design/schema documents remain unreviewed scope materials and are not Phase 01 defects.
+
+---
+
+## Formal Phase 01 closure and approval record — 2026-10-15
+
+**Status: CLOSED.** All 17 Phase 01 acceptance criteria have passing implementation/test evidence in the matrix above, all review findings that blocked closure have been resolved, and all 17 tasks are now `DONE` in TASKS.md. This formal closure supersedes the earlier NO-GO recommendations and pending-approval statements in the historical audit and corrective review sections. Those records remain intact as the evidence trail.
+
+### Approval record
+
+- **Project owner approval:** The project owner states in the current closure instruction that the designated project owner and technical advisor reviewed the latest corrective-action summary and accept the Phase 01 technical evidence, subject to final Git verification. The owner records acceptance after that verification.
+- **Technical-advisory review:** The designated technical advisor's review and acceptance are reported by the project owner. This report does not claim independent execution, a named reviewer, a signature, or separate/external Technical Lead approval.
+- **Approval scope:** Acceptance covers the 17 task criteria and evidence matrix in this report. The narrow Payload Users authentication collection and the no-geo locale policy remain within the owner-approved Phase 01 scope.
+
+### Final Git verification and delivery
+
+Before the formal-closure documentation change, `main` was at `5162d87c654d1ea4a8f7add9abfa25aa5e474849` and three corrective commits were ahead of `origin/main`. `origin/main` was fetched at `6d8bd7617e9d1cf74627af5c8033f57b14d6ccd3`, the expected ancestor. Review of those three commits showed only Phase 01 closure report, task evidence, architecture clarification, route placement, GraphQL configuration, and auth/API regression-test changes. No environment, secret, generated, or unrelated user files were included; targeted high-confidence credential-pattern review found no matches. Existing untracked Phase 02+ documents and the independent owner audit were preserved.
+
+The corrective commits reviewed before this approval are:
+
+1. `6fa5f753af6a05736deebb7d0f82644e4e0204dd` — route/layout, GraphQL, regression checks, and restored evidence.
+2. `635c7e144f2c263c0577e219f31c05b2ad8660b0` — commit evidence in TASKS.md and this report.
+3. `5162d87c654d1ea4a8f7add9abfa25aa5e474849` — record of transient cache/startup validation retries.
+
+The formal-closure documentation change is limited to PLAN.md, TASKS.md, and this report. It is intended for a normal fast-forward push only after a fresh fetch confirms that `origin/main` remains the expected ancestor. The post-push synchronization result and final commit SHA are reported to the owner in the closure delivery message.
+
+### GraphQL scope after closure
+
+Payload GraphQL remains intentionally disabled through the supported `graphQL.disable` configuration, and the development playground route remains absent. The previously reproducible duplicate GraphQL scalar/module error is therefore not exposed as a Phase 01 endpoint. Re-enabling GraphQL requires a separate defect fix plus regression tests for GraphQL access and playground availability. REST, Payload Admin, authentication, and PostgreSQL remain enabled and validated.
+
+### Phase 02 boundary
+
+Phase 01 is formally closed. Phase 02 has **not started**; no Phase 02 implementation was included in the reviewed commits or performed during closure. Existing untracked Phase 02+ documents are preserved. This approval records Phase 01 acceptance only and does not authorize Phase 02 implementation.
+
+**Remaining Phase 01 blockers: none identified.**
