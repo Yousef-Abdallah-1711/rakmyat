@@ -1,0 +1,13 @@
+*.md
+graphics/
+node_modules/
+.next/
+playwright-report/
+test-results/
+pnpm-lock.yaml
+pnpm-workspace.yaml
+.env.example
+.nvmrc
+docker/
+next-env.d.ts
+app/(payload)/admin/importMap.js

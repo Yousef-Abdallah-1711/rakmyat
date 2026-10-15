@@ -1,0 +1,46 @@
+packages:
+  - '.'
+
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  esbuild: true
+  unrs-resolver: true
+minimumReleaseAgeExclude:
+  - '@next/env@15.5.28'
+  - '@next/env@16.4.1'
+  - '@next/eslint-plugin-next@16.4.1'
+  - '@next/swc-darwin-arm64@16.4.1'
+  - '@next/swc-darwin-x64@16.4.1'
+  - '@next/swc-linux-arm64-gnu@16.4.1'
+  - '@next/swc-linux-arm64-musl@16.4.1'
+  - '@next/swc-linux-x64-gnu@16.4.1'
+  - '@next/swc-linux-x64-musl@16.4.1'
+  - '@next/swc-win32-arm64-msvc@16.4.1'
+  - '@next/swc-win32-x64-msvc@16.4.1'
+  - '@playwright/test@1.64.1'
+  - eslint-config-next@16.4.1
+  - next@16.4.1
+  - playwright-core@1.64.1
+  - playwright@1.64.1
+  - react-dom@19.3.1
+  - react@19.3.1
+  - '@rolldown/binding-android-arm-eabi@1.2.14'
+  - '@rolldown/binding-android-arm64@1.2.14'
+  - '@rolldown/binding-darwin-arm64@1.2.14'
+  - '@rolldown/binding-darwin-x64@1.2.14'
+  - '@rolldown/binding-freebsd-x64@1.2.14'
+  - '@rolldown/binding-linux-arm-gnueabihf@1.2.14'
+  - '@rolldown/binding-linux-arm64-gnu@1.2.14'
+  - '@rolldown/binding-linux-arm64-musl@1.2.14'
+  - '@rolldown/binding-linux-ppc64-gnu@1.2.14'
+  - '@rolldown/binding-linux-s390x-gnu@1.2.14'
+  - '@rolldown/binding-linux-x64-gnu@1.2.14'
+  - '@rolldown/binding-linux-x64-musl@1.2.14'
+  - '@rolldown/binding-openharmony-arm64@1.2.14'
+  - '@rolldown/binding-win32-arm64-msvc@1.2.14'
+  - '@rolldown/binding-win32-x64-msvc@1.2.14'
+  - 'electron-to-chromium@1.5.456'
+  - 'rolldown@1.2.14'
+  - 'undici@8.12.1'
+  - 'whatwg-url@17.3.0'
