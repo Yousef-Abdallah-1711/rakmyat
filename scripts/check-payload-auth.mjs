@@ -108,6 +108,20 @@ try {
   userID = createdUser.id
   assert.ok(createdUser.email, 'the first user should be stored with an email')
 
+  const authenticatedRead = await page.request.get(
+    `${baseURL}/api/users?limit=1`,
+  )
+  assert.equal(
+    authenticatedRead.status(),
+    200,
+    'authenticated Payload users read should be allowed',
+  )
+  const users = await authenticatedRead.json()
+  assert.ok(
+    users.docs.some((user) => String(user.id) === String(userID)),
+    'authenticated users read should include the signed-in user',
+  )
+
   const unauthenticatedContext = await browser.newContext()
   try {
     const publicRead = await unauthenticatedContext.request.get(
@@ -119,16 +133,7 @@ try {
       `${baseURL}/api/users`,
       { data: { email: `blocked-${randomUUID()}@example.invalid`, password } },
     )
-    assert.notEqual(
-      publicCreate.status(),
-      201,
-      'public user creation must be denied',
-    )
-    assert.notEqual(
-      publicCreate.status(),
-      200,
-      'public user creation must be denied',
-    )
+    assert.equal(publicCreate.status(), 403, 'public user creation is denied')
   } finally {
     await unauthenticatedContext.close()
   }

@@ -19,6 +19,11 @@ if (!payloadSecret || payloadSecret.length < 32) {
 
 export default buildConfig({
   secret: payloadSecret,
+  graphQL: {
+    disable: true,
+    disableIntrospectionInProduction: true,
+    disablePlaygroundInProduction: true,
+  },
   admin: {
     user: Users.slug,
   },

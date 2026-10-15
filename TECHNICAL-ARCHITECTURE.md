@@ -170,6 +170,7 @@ Public Frontend  →  Data Access Layer  →  Payload Local API  →  PostgreSQL
 - **Public frontend** never queries PostgreSQL directly — it goes through Payload's Local API (server-side, same process) or the REST/GraphQL API (not required at this scale; Local API is preferred for Server Components to avoid an unnecessary network hop within the same process).
 - **Form submission** (§20/PRODUCT.md §21) is a Server Action or Route Handler that validates with Zod server-side (never trusting client-side validation alone) before writing to the `Leads` collection via the Local API.
 - **CMS admin** is Payload's own managed admin UI, mounted at an app route (e.g. `/admin`), gated by Payload's authentication — not a custom-built admin panel.
+- **HTTP API scope:** Payload REST is mounted at `/api/*` by the official `(payload)` route-group handlers ([Payload Admin/REST overview](https://payloadcms.com/docs/admin/overview)). GraphQL is optional and is disabled for Phase 01 using the supported `graphQL.disable` setting ([Payload GraphQL docs](https://payloadcms.com/docs/graphql/overview)); Payload's Local API is preferred for same-process server rendering. Re-enable GraphQL only alongside a verified integration regression test.
 - **Motion/3D layer** is a presentation-only boundary: GSAP/R3F components receive already-resolved, already-localized content as props; they contain no data-fetching or CMS logic.
 
 ---
@@ -197,8 +198,9 @@ app/
     not-found.tsx                    # 404
   (payload)/
     admin/[[...segments]]/page.tsx    # Payload admin mount
-  api/
-    [...]                            # Payload REST/GraphQL mount, form Route Handler
+    api/
+      [...slug]/route.ts              # Payload REST API, publicly mounted at /api/[...slug]
+      graphql/route.ts                # Optional Payload GraphQL API; disabled in Phase 01 config
 collections/
   Projects.ts
   ProjectCategories.ts
@@ -235,6 +237,8 @@ lib/
 payload.config.ts
 next.config.ts
 ```
+
+**Route-group clarification:** Next.js omits route-group names from URLs ([Next.js route groups](https://nextjs.org/docs/app/api-reference/file-conventions/route-groups)). The official Payload Next.js integration keeps its Admin and API handlers together under `app/(payload)/`; the directory group therefore does not prefix public API paths. In this implementation the REST handler resolves to `/api/*` and the Admin remains `/admin`. The locale homepage lives at `app/[locale]/(marketing)/page.tsx`, which resolves to `/en` or `/ar` under the existing locale layout. No duplicate route or additional root layout is required. Payload GraphQL is disabled in Phase 01 because the approved architecture prefers the Local API and does not require public GraphQL; re-enable it only when a later task requires it and a regression test passes. The optional GraphQL Playground handler is omitted so it cannot remain exposed in development when GraphQL is disabled.
 
 ---
 

@@ -59,3 +59,23 @@ test('root follows Accept-Language quality preferences', async ({
   expect(response.status()).toBe(307)
   expect(response.headers().location).toBe('/en')
 })
+
+test('Payload admin and REST routes remain available with protected users', async ({
+  request,
+}) => {
+  const admin = await request.get('/admin')
+  expect(admin.status()).toBe(200)
+
+  const publicRead = await request.get('/api/users?limit=1')
+  expect(publicRead.status()).toBe(403)
+})
+
+test('unused Payload GraphQL routes are disabled', async ({ request }) => {
+  const graphql = await request.post('/api/graphql', {
+    data: { query: '{ __typename }' },
+  })
+  expect(graphql.status()).toBe(404)
+
+  const playground = await request.get('/api/graphql-playground')
+  expect(playground.status()).toBe(404)
+})

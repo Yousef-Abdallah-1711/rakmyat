@@ -213,6 +213,34 @@ All 17 tasks were rechecked against their original acceptance criteria. Technica
 
 **Open exit blocker:** Technical Lead review/approval remains pending. Every Phase 01 task remains `IN_REVIEW`; none is marked `DONE`. No Phase 02 work has started. Unreviewed later-phase design/schema/audit files remain unstaged and uncommitted. See [PHASE-01-CLOSURE-REPORT.md](./PHASE-01-CLOSURE-REPORT.md) for the 17-task PASS/BLOCKED checklist and Phase 02 recommendation.
 
+### Corrective action revalidation (2026-10-15)
+
+This dated revalidation supersedes any earlier Phase 01 closure statements above when results differ. The original per-task acceptance criteria remain the authoritative criteria and are unchanged. Evidence details and the exact-criteria matrix are in [PHASE-01-CLOSURE-REPORT.md](./PHASE-01-CLOSURE-REPORT.md). All 17 task statuses remain `IN_REVIEW`; evidence passing is not an approval and no owner or Technical Lead approval is recorded.
+
+| Task | Corrective-pass evidence against the original criterion | Evidence result |
+|---|---|---|
+| P01-T001 | 2026-10-15 registry/version and peer evidence remains recorded above; `corepack pnpm install --frozen-lockfile` and `corepack pnpm peers check` pass. | PASS |
+| P01-T002 | Sourced Webpack decision predates T009; current dev server and `corepack pnpm build` use `--webpack` and pass. | PASS |
+| P01-T003 | App Router dev route returns 200; clean production Webpack build and `corepack pnpm typecheck` pass. | PASS |
+| P01-T004 | No `tailwind.config.js`; CSS-first Tailwind `@theme` compiles in the production build. | PASS |
+| P01-T005 | `lint`, `format:check`, and `typecheck` scripts exist; final reruns pass. | PASS |
+| P01-T006 | `.env.local` remains ignored; `.env.example` contains placeholders only; current Phase 01 files do not add environment values. | PASS |
+| P01-T007 | Compose app is loopback-published and runs as `node`; healthy DB has no host port mapping. | PASS |
+| P01-T008 | `docker compose --env-file .env.local exec -T app pnpm db:check` passes after DB restart. | PASS |
+| P01-T009 | Auth integration verifies first-user setup, login, authenticated read, unauthenticated read/create denial, DB restart persistence, and cleanup; `/admin` returns 200. Only Users is configured. | PASS |
+| P01-T010 | Cookie → supported `Accept-Language` → English behavior remains covered by unit/E2E checks; no geo lookup. | PASS |
+| P01-T011 | Playwright verifies `/en` (`lang=en`, `dir=ltr`) and `/ar` (`lang=ar-EG`, `dir=rtl`) at the document root. | PASS |
+| P01-T012 | Locale home moved to `app/[locale]/(marketing)/page.tsx`; required §9 skeleton exists; `/en` and `/ar` remain unchanged. Payload stays in `(payload)` and exposes the same public paths. | PASS |
+| P01-T013 | `corepack pnpm test`: 2 files, 7 tests passed. | PASS |
+| P01-T014 | `corepack pnpm e2e`: 27/27 passed across desktop, tablet, and mobile, including route/API regression tests. | PASS |
+| P01-T015 | Six axe scans in the E2E suite report no serious or critical violations. | PASS |
+| P01-T016 | Production build and dev route both pass with DSN unset and with `SENTRY_DSN=REPLACE_WITH_VALID_SENTRY_DSN`; placeholder tests use no real credential. | PASS |
+| P01-T017 | Frozen lockfile installation passes; `pnpm-lock.yaml` is tracked in commit `e48c4f74efe5039e4c77ad95164aca3b0a22ec1f`; dated Node 24 LTS rationale remains recorded. | PASS |
+
+**Corrective outcomes:** P01-T012's documented route-group structure is now implemented. GraphQL and its development playground are disabled/absent for Phase 01; regression checks confirm GraphQL POST and playground requests return 404 while REST and Admin remain available. The empty closure report was restored byte-for-byte from the parent commit before this addendum was written; its prior state at `6d8bd7617e9d1cf74627af5c8033f57b14d6ccd3` was a two-byte newline-only file. The full production build completed with no compiler warning lines; the earlier generic warning did not recur. The final commit SHA for this corrective pass is to be recorded after the reviewed validation commit is created.
+
+**Formal gate:** Technical Lead review/approval and owner acceptance are still pending. Keep all tasks `IN_REVIEW`; Phase 02 remains NO-GO until the authorized reviewers record their decisions. No Phase 02 implementation has begun.
+
 ---
 
 ## PHASE 02 — Design System & Visual Prototype Foundation
